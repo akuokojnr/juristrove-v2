@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@svgr/webpack": "^5.0.0",
+    "@types/react-helmet": "^5.0.15",
     "babel-plugin-styled-components": "^1.10.6",
     "firebase": "^7.8.1",
     "gatsby": "^2.19.16",

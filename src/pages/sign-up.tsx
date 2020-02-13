@@ -2,12 +2,20 @@ import React from "react";
 
 import Layout from "components/Layout";
 import RegisterForm from "components/FormPage";
+import SEO from "components/SEO";
 
 const IndexPage: React.FC = () => {
   return (
-    <Layout>
-      <RegisterForm type="sign-up" title="Create your Juristrove account" buttonText="Sign up" />
-    </Layout>
+    <>
+      <SEO title="Sign up" />
+      <Layout>
+        <RegisterForm
+          type="sign-up"
+          title="Create your Juristrove account"
+          buttonText="Sign up"
+        />
+      </Layout>
+    </>
   );
 };
 

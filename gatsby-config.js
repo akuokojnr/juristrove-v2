@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `Juristrove 2.0`,
     author: `Daniel Akuoko Jnr`,
-    description: `This is a gatsby minimal starter to quickly scalfold a project`,
+    description: `This is a website to make law research easier and faster for law students, legal professionals and academics.`,
     siteUrl: `localhost:8000`,
     social: {
       twitter: `_akuokojnr`,
