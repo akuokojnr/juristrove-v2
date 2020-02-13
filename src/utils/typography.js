@@ -20,7 +20,7 @@ const options = {
       styles: ["400", "400i", "700", "700i"],
     },
   ],
-  overrideStyles: ({ rhythm, scale }, options) => {
+  overrideStyles: () => {
     return {
       h1: { fontSize: "37px", lineHeight: 1.6 },
       h2: { fontSize: "33px", lineHeight: 1.05 },
