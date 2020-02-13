@@ -39,7 +39,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText }) => {
           Don't have an account? <StyledLink to="/sign-up">Sign up</StyledLink>
         </p>
       )}
-      {type === "sign-up" && (
+      {(type === "sign-up" || type === "reset") && (
         <p>
           Already have an account? <StyledLink to="/">Sign in</StyledLink>
         </p>
