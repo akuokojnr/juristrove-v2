@@ -1,6 +1,8 @@
+/* eslint-disable */
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Minimal Starter`,
+    title: `Juristrove 2.0`,
     author: `Daniel Akuoko Jnr`,
     description: `This is a gatsby minimal starter to quickly scalfold a project`,
     siteUrl: `localhost:8000`,
@@ -14,8 +16,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby minimal starter`,
-        short_name: `GMS`,
+        name: `Juristrove 2.0`,
+        short_name: `Juristrove`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
@@ -33,5 +35,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `gatsby-plugin-typescript`,
   ],
 }
