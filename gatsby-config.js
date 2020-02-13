@@ -14,6 +14,13 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `./src/images`
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Juristrove 2.0`,
@@ -37,4 +44,4 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
   ],
-}
+};
