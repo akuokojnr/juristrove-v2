@@ -1,13 +1,14 @@
 import React from "react";
 
 import Layout from "components/Layout";
+import LoginForm from "components/Login";
 
-const BlogIndex = () => {
+const IndexPage: React.FC = () => {
   return (
     <Layout>
-      <h1>Gatsby minimal setup</h1>
+      <LoginForm />
     </Layout>
   );
 };
 
-export default BlogIndex;
+export default IndexPage;

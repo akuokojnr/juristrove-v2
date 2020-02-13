@@ -4,20 +4,24 @@ const MOBILE_MEDIA_QUERY = "@media only screen and (max-width:575px)";
 const TABLET_MEDIA_QUERY = "@media only screen and (max-width:992px)";
 
 const options = {
-  baseFontSize: "16px",
+  baseFontSize: "18px",
   baseLineHeight: 1.45,
   blockMarginBottom: 0,
-  headerFontFamily: ["Inria Serif", "sans-serif"],
-  bodyFontFamily: ["Source Sans Pro", "sans-serif"],
+  headerFontFamily: ["Playfair Display", "sans-serif"],
+  bodyFontFamily: ["Cabin", "sans-serif"],
   scaleRatio: 2.15,
   googleFonts: [
     {
       name: "Source Sans Pro",
-      styles: ["400", "400i", "500", "600", "700", "700i"],
+      styles: ["300", "400", "500", "600", "700", "800"],
     },
     {
-      name: "Inria Serif",
-      styles: ["400", "400i", "700", "700i"],
+      name: "Playfair Display",
+      styles: ["300", "400", "500", "600", "700", "800"],
+    },
+    {
+      name: "Cabin",
+      styles: ["300", "400", "500", "600", "700", "800"],
     },
   ],
   overrideStyles: () => {
@@ -26,6 +30,7 @@ const options = {
       h2: { fontSize: "33px", lineHeight: 1.05 },
       h3: { fontSize: "29px", lineHeight: 1.2 },
       p: { fontSize: "20px", lineHeight: 1.2 },
+      a: { textDecoration: "none" },
       [TABLET_MEDIA_QUERY]: {
         // Make baseFontSize on mobile 17px.
         html: {

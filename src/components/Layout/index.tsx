@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import theme from "utils/theme";
 
-const Layout = ({ children }) => {
+const Layout: React.FC<React.ReactNode> = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <main>{children}</main>
