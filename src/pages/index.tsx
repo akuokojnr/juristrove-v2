@@ -8,7 +8,7 @@ const IndexPage: React.FC = () => {
     <Layout>
       <LoginForm />
     </Layout>
-  )
-}
+  );
+};
 
 export default IndexPage;
