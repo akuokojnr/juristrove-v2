@@ -5,10 +5,13 @@ import media from "utils/media";
 
 const Wrap = styled.section`
   height: 100vh;
-  display: block;
 
   div:first-child {
     display: none;
+  }
+
+  div:last-child {
+    margin-top: 10rem;
   }
 
   ${media.md`
@@ -19,6 +22,15 @@ const Wrap = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0 1.5rem;
+
+      h3 {
+        max-width: 90%;
+      }
+    }
+
+    div:last-child {
+      margin-top: 0;
     }
   `}
 `;

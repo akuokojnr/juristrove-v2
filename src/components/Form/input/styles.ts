@@ -15,13 +15,13 @@ const Label = styled.label`
 
   span {
     font-size: 1rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
 const Input = styled.input`
   border: none;
-  border-bottom: 1.6px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1.6px solid rgba(0, 0, 0, 0.25);
   width: 100%;
   padding-bottom: 0.5rem;
 

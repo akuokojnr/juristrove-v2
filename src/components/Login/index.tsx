@@ -33,7 +33,7 @@ const Login: React.FC = () => {
         </div>
       </ImgWrap>
       <FormWrap>
-        <Title>Create account</Title>
+        <Title>Sign in to your account</Title>
         <Form />
       </FormWrap>
     </Wrap>

@@ -18,7 +18,7 @@ const Form: React.FC = () => {
         name="password"
         handleChange={setPassword}
       />
-      <Button type="submit" buttonText="Log in" />
+      <Button type="submit" buttonText="Sign in" />
     </FormWrap>
   );
 };
