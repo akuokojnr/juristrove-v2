@@ -1,12 +1,17 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
 
 import Form from "components/Form";
 
 import { Wrap, ImgWrap, ImgTitle, FormWrap, Title } from "./styles";
 
-const Login: React.FC = () => {
+interface FormPageProps {
+  type: "sign-in" | "sign-up";
+  title: string;
+  buttonText: string;
+}
+
+const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
   const data = useStaticQuery(graphql`
     query {
       image: file(name: { eq: "woman-with-laptop" }) {
@@ -33,11 +38,11 @@ const Login: React.FC = () => {
         </div>
       </ImgWrap>
       <FormWrap>
-        <Title>Sign in to your account</Title>
-        <Form />
+        <Title>{title}</Title>
+        <Form type={type} buttonText={buttonText} />
       </FormWrap>
     </Wrap>
   );
 };
 
-export default Login;
+export default FormPage;

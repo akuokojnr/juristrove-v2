@@ -1,16 +1,12 @@
 import React from "react";
 
 import Layout from "components/Layout";
-import LoginForm from "components/FormPage";
+import RegisterForm from "components/FormPage";
 
 const IndexPage: React.FC = () => {
   return (
     <Layout>
-      <LoginForm
-        type="sign-in"
-        title="Sign in to your account"
-        buttonText="Sign in"
-      />
+      <RegisterForm type="sign-up" title="Create your Juristrove account" buttonText="Sign up" />
     </Layout>
   );
 };
