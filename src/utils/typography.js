@@ -1,7 +1,7 @@
-import Typography from "typography"
+import Typography from "typography";
 
-const MOBILE_MEDIA_QUERY = "@media only screen and (max-width:575px)"
-const TABLET_MEDIA_QUERY = "@media only screen and (max-width:992px)"
+const MOBILE_MEDIA_QUERY = "@media only screen and (max-width:575px)";
+const TABLET_MEDIA_QUERY = "@media only screen and (max-width:992px)";
 
 const options = {
   baseFontSize: "16px",
@@ -38,17 +38,17 @@ const options = {
           fontSize: `${(16 / 16) * 100}%`,
         },
       },
-    }
+    };
   },
-}
+};
 
-const typography = new Typography(options)
+const typography = new Typography(options);
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== "production") {
-  typography.injectStyles()
+  typography.injectStyles();
 }
 
-export default typography
-export const rhythm = typography.rhythm
-export const scale = typography.scale
+export default typography;
+export const rhythm = typography.rhythm;
+export const scale = typography.scale;
