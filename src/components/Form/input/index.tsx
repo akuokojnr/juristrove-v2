@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Input, Label } from "./styles";
+import { Input, Label, StyledLink } from "./styles";
 
 interface InputProps {
   type: string;
@@ -19,7 +19,16 @@ const InputEl: React.FC<InputProps> = ({
 }) => {
   return (
     <Label>
-      <span>{label}</span>
+      {type === "password" ? (
+        <div className="pwd">
+          <span>{label}</span>
+          <span className="forgot-password">
+            <StyledLink to="/reset-password">Forgot password?</StyledLink>
+          </span>
+        </div>
+      ) : (
+        <span>{label}</span>
+      )}
       <Input
         type={type}
         name={name}

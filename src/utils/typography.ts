@@ -30,6 +30,7 @@ const options = {
       h2: { fontSize: "33px", lineHeight: 1.05 },
       h3: { fontSize: "29px", lineHeight: 1.2 },
       p: { fontSize: "20px", lineHeight: 1.2 },
+      a: { textDecoration: "none" },
       [TABLET_MEDIA_QUERY]: {
         // Make baseFontSize on mobile 17px.
         html: {

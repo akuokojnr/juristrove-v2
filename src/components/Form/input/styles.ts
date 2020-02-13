@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 import media from "utils/media";
 
@@ -18,6 +19,15 @@ const Label = styled.label`
     margin-bottom: 0.5rem;
     color: ${({ theme }) => theme.colors.text};
   }
+
+  .pwd {
+    padding: 0 !important;
+    display: flex !important;
+  }
+
+  .forgot-password {
+    margin-left: auto;
+  }
 `;
 
 const Input = styled.input`
@@ -25,12 +35,17 @@ const Input = styled.input`
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.boxShadow};
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: box-shadow 420ms;
 
   :focus {
     outline: none;
-    border-bottom-color: ${({ theme }) => theme.colors.black};
+    box-shadow: ${({ theme }) => theme.activeBoxShadow};
   }
 `;
 
-export { Input, Label };
+const StyledLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.moderateCyan};
+`
+
+export { Input, Label, StyledLink };
