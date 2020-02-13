@@ -4,6 +4,7 @@ import { Input, Label, StyledLink } from "./styles";
 
 interface InputProps {
   type: string;
+  hasForgotPassword?: boolean;
   label: string;
   name: string;
   placeholder?: string;
@@ -13,13 +14,14 @@ interface InputProps {
 const InputEl: React.FC<InputProps> = ({
   type,
   label,
+  hasForgotPassword,
   name,
   placeholder,
   handleChange,
 }) => {
   return (
     <Label>
-      {type === "password" ? (
+      {type === "password" && !hasForgotPassword ? (
         <div className="pwd">
           <span>{label}</span>
           <span className="forgot-password">

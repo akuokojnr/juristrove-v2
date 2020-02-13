@@ -27,6 +27,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText }) => {
           type="password"
           label="Password"
           name="password"
+          hasForgotPassword={type !== "sign-in"}
           handleChange={setPassword}
         />
         <Button type="submit" buttonText={buttonText} />
