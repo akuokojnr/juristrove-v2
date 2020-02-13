@@ -23,10 +23,6 @@ const Wrap = styled.section`
       justify-content: center;
       align-items: center;
       padding: 0 1.5rem;
-
-      h3 {
-        max-width: 90%;
-      }
     }
 
     div:last-child {
@@ -37,17 +33,19 @@ const Wrap = styled.section`
 
 const ImgWrap = styled(BgImg)`
   & p {
-    margin-top: 2rem;
+    margin: 2rem auto 0;
+    max-width: 80%;
     color: white;
     font-size: 1.5rem;
   }
 `;
 
 const ImgTitle = styled.h3`
-  max-width: 70%;
+  max-width: 80%;
   font-size: 3rem;
   font-weight: 500;
   color: white;
+  margin: 0 auto;
 `;
 
 const FormWrap = styled.div`

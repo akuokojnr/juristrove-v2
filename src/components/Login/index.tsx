@@ -28,7 +28,7 @@ const Login: React.FC = () => {
     <Wrap>
       <ImgWrap Tag="div" fluid={imageStack}>
         <div>
-          <ImgTitle>Make law research easier again</ImgTitle>
+          <ImgTitle>Make law research easier and enjoyable again</ImgTitle>
           <p>Access 2000+ decided cases anywhere, anytime.</p>
         </div>
       </ImgWrap>

@@ -10,20 +10,22 @@ const Label = styled.label`
 
   ${media.md`
   	max-width: 400px;
-	  margin: 0 0 3rem;
+	  margin: 0 0 2rem;
   `}
 
   span {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
 const Input = styled.input`
   border: none;
-  border-bottom: 1.6px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  box-shadow: ${({ theme }) => theme.boxShadow};
   width: 100%;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 
   :focus {
     outline: none;
