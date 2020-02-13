@@ -6,7 +6,7 @@ import Button from "components/Button";
 import { FormWrap, StyledLink } from "./styles";
 
 interface FormProps {
-  type: "sign-in" | "sign-up";
+  type: "sign-in" | "sign-up" | "reset";
   buttonText: string;
 }
 
@@ -23,13 +23,15 @@ const Form: React.FC<FormProps> = ({ type, buttonText }) => {
           name="email"
           handleChange={setEmail}
         />
-        <Input
-          type="password"
-          label="Password"
-          name="password"
-          hasForgotPassword={type !== "sign-in"}
-          handleChange={setPassword}
-        />
+        {type !== "reset" && (
+          <Input
+            type="password"
+            label="Password"
+            name="password"
+            hasForgotPassword={type !== "sign-in"}
+            handleChange={setPassword}
+          />
+        )}
         <Button type="submit" buttonText={buttonText} />
       </FormWrap>
       {type === "sign-in" && (
@@ -39,8 +41,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText }) => {
       )}
       {type === "sign-up" && (
         <p>
-          Already have an account?{" "}
-          <StyledLink to="/">Sign in</StyledLink>
+          Already have an account? <StyledLink to="/">Sign in</StyledLink>
         </p>
       )}
     </>

@@ -3,10 +3,10 @@ import { useStaticQuery, graphql } from "gatsby";
 
 import Form from "components/Form";
 
-import { Wrap, ImgWrap, ImgTitle, FormWrap, Title } from "./styles";
+import { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset } from "./styles";
 
 interface FormPageProps {
-  type: "sign-in" | "sign-up";
+  type: "sign-in" | "sign-up" | "reset";
   title: string;
   buttonText: string;
 }
@@ -39,6 +39,7 @@ const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
       </ImgWrap>
       <FormWrap>
         <Title>{title}</Title>
+        {type === "reset" && <Reset>Enter the email associated with your account.</Reset>}
         <Form type={type} buttonText={buttonText} />
       </FormWrap>
     </Wrap>

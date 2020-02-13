@@ -25,7 +25,7 @@ const InputEl: React.FC<InputProps> = ({
         <div className="pwd">
           <span>{label}</span>
           <span className="forgot-password">
-            <StyledLink to="/reset-password">Forgot password?</StyledLink>
+            <StyledLink to="/reset">Forgot password?</StyledLink>
           </span>
         </div>
       ) : (

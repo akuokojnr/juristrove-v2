@@ -61,4 +61,9 @@ const Title = styled.h3`
   margin-bottom: 2.3rem;
 `;
 
-export { Wrap, ImgWrap, ImgTitle, FormWrap, Title };
+const Reset = styled.span`
+  font-size: 1rem;
+  margin-top: -1rem;
+`
+
+export { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset };
