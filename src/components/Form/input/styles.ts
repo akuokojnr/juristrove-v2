@@ -46,6 +46,6 @@ const Input = styled.input`
 
 const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.moderateCyan};
-`
+`;
 
 export { Input, Label, StyledLink };

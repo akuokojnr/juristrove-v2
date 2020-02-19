@@ -1,12 +1,22 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
+import Sidebar from "components/Sidebar";
+
 import theme from "utils/theme";
 
-const Layout: React.FC<React.ReactNode> = ({ children }) => {
+interface LayoutProps {
+  isApp?: boolean;
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ isApp, children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <main>{children}</main>
+      <main>
+        {isApp && <Sidebar />}
+        {children}
+      </main>
     </ThemeProvider>
   );
 };

@@ -39,7 +39,9 @@ const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
       </ImgWrap>
       <FormWrap>
         <Title>{title}</Title>
-        {type === "reset" && <Reset>Enter the email associated with your account.</Reset>}
+        {type === "reset" && (
+          <Reset>Enter the email associated with your account.</Reset>
+        )}
         <Form type={type} buttonText={buttonText} />
       </FormWrap>
     </Wrap>
