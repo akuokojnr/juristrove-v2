@@ -1,91 +1,135 @@
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 import media from "utils/media";
 
 import { ReactComponent as Menu } from "assets/icons/menu.svg";
 import { ReactComponent as Close } from "assets/icons/close.svg";
 
-const Wrap = styled.aside`
-  height: 100vh;
-  max-width: 300px;
-  width: 100%;
-
-  ${({ isOpen }: { isOpen: boolean }) => isOpen && `
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    max-width: 100vw;
-    background-color: rgba(0, 0, 0, 0.09);
-    transition: all ease 240ms;
-  `}
-`;
-
 const Nav = styled.nav`
   width: 100%;
-  height: 100%;
+  height: 3rem;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.lightGray};
   display: flex;
+  justify-content: center;
   padding: 2rem;
+  background: ${({ theme }) => theme.colors.white};
 
   ${media.md`
     padding: 2rem 3rem;
   `}
+`;
 
-  ${({ isOpen }: { isOpen: boolean }) => isOpen && `
-    width: 300px;
-    background-color: white;
-  `}
+const Wrap = styled.div`
+  max-width: ${({ theme }) => theme.maxWidth};
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const NavItems = styled.ul`
-  margin-left: 0;
   display: none;
-  flex-direction: column;
-  opacity: 0;
-
-  ${({ isOpen }: { isOpen: boolean }) => isOpen && `
-    display: flex;
-    width: 300px;
-    background-color: white;
-    opacity: 1;
-    transition: opacity ease 340ms;
-  `}
 
   ${media.md`
     display: flex;
+    align-items: center;
+    margin: 0 auto;
     opacity: 1
+  `}
+`;
+
+const MobileNav = styled.ul`
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  padding: 2rem 1.5rem;
+  background: ${({ theme }) => theme.colors.white};
+  transition: all ease-in 340ms;
+
+  ::after {
+    content: "";
+    position: absolute;
+    top: -4rem;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.09);
+    z-index: -2;
+  }
+
+  li {
+    margin: 0 0 1rem;
+
+    a {
+      padding: 0%;
+      font-size: 1.1rem;
+
+      :before {
+        display: none;
+      }
+    }
+  }
+
+  ${({ isOpen }: { isOpen: boolean }) => isOpen && `display: block;`}
+
+  ${media.md`
+      display: none;
   `}
 `;
 
 const NavItem = styled.li`
   list-style-type: none;
-  margin-bottom: 1.15rem;
+  margin-left: 2rem;
+  position: relative;
 
   a {
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.colors.text};
-    font-size: 1rem;
-  }
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 1.2rem 0;
 
-  span {
-    margin-left: 18px;
+    :before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      border-radius: 5px 5px 0 0;
+      bottom: 0;
+      background: transparent;
+      z-index: 1;
+    }
+
+    &.active,
+    :hover {
+      ::before {
+        background: ${({ theme }) => theme.colors.moderateCyan2};
+      }
+    }
   }
 `;
 
-const Brand = styled(NavItem)`
-  margin-bottom: 5rem;
+const Brand = styled(Link)`
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0 auto;
 
-  a {
+  ${media.md`
+    margin: 0;
     font-size: 1.7rem;
-    font-weight: bold;
-  }
+  `}
 `;
 
 const MenuIcon = styled(Menu)`
-  height: 50px;
-  width: 70px;
-  margin-left: -2rem;
+  height: 45px;
+  width: 60px;
+  margin-left: -1.4rem;
+  transform: scale(0.8);
 
   ${media.md`
     display: none;
@@ -93,13 +137,36 @@ const MenuIcon = styled(Menu)`
 `;
 
 const CloseIcon = styled(Close)`
-  height: 50px;
-  width: 70px;
-  margin-left: -2rem;
+  height: 45px;
+  width: 60px;
+  margin-left: -1.5rem;
+  margin-bottom: -0.5rem;
+  transform: scale(0.8);
 
   ${media.md`
     display: none;
   `}
 `;
 
-export { Wrap, Nav, NavItems, NavItem, Brand, MenuIcon, CloseIcon };
+const Button = styled.button`
+  ${({ theme }) => theme.buttonPrimary};
+  font-weight: 500;
+  padding: 0.25rem 1rem;
+
+  ${media.md`
+    margin-left: 0;
+    padding: 0.4rem 1.2rem;
+  `}
+`;
+
+export {
+  Wrap,
+  Nav,
+  NavItems,
+  MobileNav,
+  NavItem,
+  Brand,
+  Button,
+  MenuIcon,
+  CloseIcon,
+};

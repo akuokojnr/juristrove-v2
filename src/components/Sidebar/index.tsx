@@ -6,8 +6,10 @@ import {
   Wrap,
   Nav,
   NavItems,
+  MobileNav,
   NavItem,
   Brand,
+  Button,
   MenuIcon,
   CloseIcon,
 } from "./styles";
@@ -16,7 +18,7 @@ const LINKS = [
   {
     id: uuid(),
     name: "Home",
-    url: "/home",
+    url: "/app",
   },
   {
     id: uuid(),
@@ -36,8 +38,8 @@ const Sidebar = () => {
   const handleClick = () => toggleMenu(!isOpen);
 
   return (
-    <Wrap isOpen={isOpen}>
-      <Nav isOpen={isOpen}>
+    <Nav isOpen={isOpen}>
+      <Wrap isOpen={isOpen}>
         <div>
           {isOpen ? (
             <CloseIcon onClick={handleClick} />
@@ -45,19 +47,30 @@ const Sidebar = () => {
             <MenuIcon onClick={handleClick} />
           )}
         </div>
+        <Brand to="/app">Juristrove</Brand>
         <NavItems isOpen={isOpen}>
-          <Brand>
-            <Link to="/">Juristrove</Link>
-          </Brand>
           {LINKS.map(({ id, name, url }) => (
             <NavItem key={id}>
-              <Link to={url}>{name}</Link>
+              <Link to={url} activeClassName="active">
+                {name}
+              </Link>
             </NavItem>
           ))}
-          <NavItem>Log out</NavItem>
         </NavItems>
-      </Nav>
-    </Wrap>
+
+        <MobileNav isOpen={isOpen}>
+          {LINKS.map(({ id, name, url }) => (
+            <NavItem key={id}>
+              <Link to={url} activeClassName="active">
+                {name}
+              </Link>
+            </NavItem>
+          ))}
+        </MobileNav>
+
+        <Button>Log out</Button>
+      </Wrap>
+    </Nav>
   );
 };
 
