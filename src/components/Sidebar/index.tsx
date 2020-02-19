@@ -38,8 +38,8 @@ const Sidebar = () => {
   const handleClick = () => toggleMenu(!isOpen);
 
   return (
-    <Nav isOpen={isOpen}>
-      <Wrap isOpen={isOpen}>
+    <Nav>
+      <Wrap>
         <div>
           {isOpen ? (
             <CloseIcon onClick={handleClick} />
@@ -48,7 +48,7 @@ const Sidebar = () => {
           )}
         </div>
         <Brand to="/app">Juristrove</Brand>
-        <NavItems isOpen={isOpen}>
+        <NavItems>
           {LINKS.map(({ id, name, url }) => (
             <NavItem key={id}>
               <Link to={url} activeClassName="active">

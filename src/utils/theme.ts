@@ -3,6 +3,8 @@ export default {
     text: "#3c4257",
     moderateCyan: "#0A8080",
     moderateCyan2: "#52ADA2",
+    darkCyan: "#20433E",
+    lightCyan: "#CAE6E2",
     lightGray: "#F2F5F4",
     white: "#FFF",
     black: "#000",
