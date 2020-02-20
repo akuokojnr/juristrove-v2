@@ -113,7 +113,6 @@ const BookmarkIcon = styled(Bookmark)`
   opacity: 1;
   transition: opacity ease-in 350ms;
 
-
   path {
     ${({ theme, active }) =>
       active &&
@@ -125,6 +124,8 @@ const BookmarkIcon = styled(Bookmark)`
   ${media.md`
     margin-left: 0;
     opacity: 0;
+
+    ${({ active }) => active && `opacity: 1;`}
   `}
 `;
 
