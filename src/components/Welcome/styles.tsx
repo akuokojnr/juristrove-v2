@@ -52,7 +52,7 @@ const Blurb = styled.div`
 `;
 
 const ActivityWrap = styled.div`
-  margin-top: 3rem;
+  margin: 3rem 0;
   padding: 2rem 1.8rem;
   border-radius: 11px;
   border: 1.7px solid ${({ theme }) => theme.colors.limeGray};
