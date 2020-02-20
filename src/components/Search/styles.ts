@@ -69,21 +69,27 @@ const HitWrap = styled.article`
 
   a {
     color: ${({ theme }) => theme.colors.text};
-    border-right: 1.7px solid ${({ theme }) => theme.colors.limeGray};
+    border-right: none;
   }
 
   h4 {
     margin-bottom: 0.9rem;
     font-size: 1.15rem;
     font-weight: 600;
-    max-width: 90%;
   }
 
   p {
-    max-width: 90%;
     line-height: 1.5;
     font-size: 0.95rem;
   }
+
+  ${media.sm`
+    border-right: 1.7px solid ${({ theme }) => theme.colors.limeGray};
+
+    h4, p {
+      max-width: 90%;
+    }
+  `}
 
   ${media.md`
     padding: 1.8rem;
@@ -105,6 +111,7 @@ const HitWrap = styled.article`
 `;
 
 const BookmarkIcon = styled(Bookmark)`
+  display: none;
   margin-left: 1rem;
   width: 40px;
   height: 40px;
@@ -120,6 +127,10 @@ const BookmarkIcon = styled(Bookmark)`
     fill: ${theme.colors.moderateCyan2};
   `}
   }
+
+  ${media.sm`
+    display: block;
+  `}
 
   ${media.md`
     margin-left: 0;
