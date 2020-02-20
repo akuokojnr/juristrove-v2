@@ -104,7 +104,8 @@ const ActivityWrap = styled.div`
     }
 
     :hover {
-      background: rgba(91, 93, 92, 0.05);
+      background: rgba(79, 90, 89, 0.09);
+      border-radius: 6px;
     }
   }
 `;
