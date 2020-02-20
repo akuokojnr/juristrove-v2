@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import media from "utils/media";
 
-const Wrap = styled.div`
+const Blurb = styled.div`
   border-radius: 15px;
   padding: 3rem;
   background: ${({ theme }) => theme.colors.lightCyan};
@@ -47,4 +47,4 @@ const Wrap = styled.div`
   }
 `;
 
-export { Wrap };
+export { Blurb };

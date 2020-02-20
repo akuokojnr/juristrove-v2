@@ -1,16 +1,18 @@
 import React from "react";
 
-import { Wrap } from "./styles";
+import { Blurb } from "./styles";
 
 interface WelcomeProps {
   username: string;
 }
 
 const Welcome: React.FC<WelcomeProps> = ({ username }) => (
-  <Wrap>
-    <h3>Hello {username}!</h3>
-    <p>Welcome back to Juristrove.</p>
-  </Wrap>
+  <>
+    <Blurb>
+      <h3>Hello {username}!</h3>
+      <p>Welcome back to Juristrove.</p>
+    </Blurb>
+  </>
 );
 
 export default Welcome;
