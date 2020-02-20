@@ -25,6 +25,7 @@ const Wrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  z-index: 1;
 `;
 
 const NavItems = styled.ul`
@@ -49,15 +50,15 @@ const MobileNav = styled.ul`
   background: ${({ theme }) => theme.colors.white};
   transition: all ease-in 340ms;
 
-  ::after {
+  ::before {
     content: "";
     position: absolute;
-    top: -4rem;
+    top: 3rem;
     left: 0;
     right: 0;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.09);
-    z-index: -2;
+    background: rgba(0, 0, 0, 0.67);
+    z-index: -1;
   }
 
   li {

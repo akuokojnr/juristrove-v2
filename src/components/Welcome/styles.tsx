@@ -9,6 +9,7 @@ const Blurb = styled.div`
   color: ${({ theme }) => theme.colors.darkCyan};
   position: relative;
   overflow: hidden;
+  z-index: -1;
 
   ${media.md`
     padding: 3rem;
