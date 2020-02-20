@@ -6,6 +6,8 @@ export default {
     darkCyan: "#20433E",
     lightCyan: "#CAE6E2",
     lightGray: "#F2F5F4",
+    limeGray: "#e7eceb",
+    smallText: "#657786",
     white: "#FFF",
     black: "#000",
   },

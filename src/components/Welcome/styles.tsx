@@ -4,13 +4,16 @@ import media from "utils/media";
 
 const Blurb = styled.div`
   border-radius: 15px;
-  padding: 3rem;
+  padding: 2rem 1.8rem;
   background: ${({ theme }) => theme.colors.lightCyan};
   color: ${({ theme }) => theme.colors.darkCyan};
   position: relative;
   overflow: hidden;
 
-  :before {
+  ${media.md`
+    padding: 3rem;
+  `}
+    :before {
     content: "";
     position: absolute;
     top: 0;
@@ -26,25 +29,80 @@ const Blurb = styled.div`
 
   h3 {
     font-family: "Cabin";
-    font-size: 2rem;
+    font-size: 1.8rem;
     z-index: 2;
     position: relative;
 
     ${media.md`
-        font-size: 2.3rem;
+      font-size: 2.3rem;
     `}
   }
 
   p {
     margin-top: 0.8rem;
-    font-size: 1.2rem;
+    font-size: 1.14rem;
     z-index: 2;
     position: relative;
 
     ${media.md`
-        font-size: 1.4rem;
+      font-size: 1.4rem;
     `}
   }
 `;
 
-export { Blurb };
+const ActivityWrap = styled.div`
+  margin-top: 3rem;
+  padding: 2rem 1.8rem;
+  border-radius: 11px;
+  border: 1.7px solid ${({ theme }) => theme.colors.limeGray};
+
+  ${media.md`
+    margin-top: 6rem;
+    padding: 3rem;
+  `}
+
+  p {
+    font-size: 1.35rem;
+    color: ${({ theme }) => theme.colors.text};
+    font-weight: 600;
+    margin-bottom: 2rem;
+
+    ${media.md`
+      font-size: 1.5rem;
+    `}
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    list-style-type: none;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.limeGray};
+
+    a {
+      color: ${({ theme }) => theme.colors.text};
+      font-size: 1.125rem;
+      padding: 1rem 0;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    span {
+      font-size: 0.85rem;
+      color: ${({ theme }) => theme.colors.smallText};
+      margin-top: 0.5rem;
+    }
+
+    :last-child {
+      border: none;
+
+      a {
+        margin-bottom: 0;
+      }
+    }
+  }
+`;
+
+export { Blurb, ActivityWrap };
