@@ -20,16 +20,20 @@ const Welcome: React.FC<WelcomeProps> = ({ username, data }) => (
     </Blurb>
     <ActivityWrap>
       <p>Activity summary</p>
-      <ul>
-        {data.map(({ title, path, timestamp }) => (
-          <li key={uuid()}>
-            <a href={path}>
-              {title}
-              <span>{timestamp}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
+      {data ? (
+        <ul>
+          {data.map(({ title, path, timestamp }) => (
+            <li key={uuid()}>
+              <a href={path}>
+                {title}
+                <span>{timestamp}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <span>You have no read any case yet.</span>
+      )}
     </ActivityWrap>
   </>
 );
