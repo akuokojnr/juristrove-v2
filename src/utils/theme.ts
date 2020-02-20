@@ -30,11 +30,11 @@ export default {
     cursor: pointer;
     border-radius: 6px;
     padding: 0.4rem 1.2rem;
-    border: none;
     font-size: 1rem;
     outline: none;
     color: #20433E;
     background: #CAE6E2;
+    border: none;
   `,
 
   boxShadow: `rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;`,

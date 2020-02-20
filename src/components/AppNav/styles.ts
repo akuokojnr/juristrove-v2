@@ -155,7 +155,7 @@ const Button = styled.button`
 
   ${media.md`
     margin-left: 0;
-    padding: 0.4rem 1.2rem;
+    padding: 0.28rem 1.2rem;
   `}
 `;
 
