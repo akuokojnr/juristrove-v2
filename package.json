@@ -10,6 +10,7 @@
   "dependencies": {
     "@svgr/webpack": "^5.0.0",
     "@types/react-helmet": "^5.0.15",
+    "@types/uuid": "^3.4.7",
     "babel-plugin-styled-components": "^1.10.6",
     "firebase": "^7.8.1",
     "gatsby": "^2.19.16",
@@ -44,7 +45,8 @@
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typography-theme-wordpress-2016": "^0.16.19",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

@@ -78,7 +78,6 @@ const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
       ]}
     />
   );
-}
-
+};
 
 export default SEO;

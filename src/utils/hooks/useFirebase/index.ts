@@ -1,13 +1,13 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import getFirebase from "./firebase";
 
 export default function() {
-    const [instance, setInstance] = useState(null);
+  const [instance, setInstance] = useState(null);
 
-    useEffect(() => {
-        setInstance(getFirebase());
-    }, [])
+  useEffect(() => {
+    setInstance(getFirebase());
+  }, []);
 
-    return instance;
+  return instance;
 }

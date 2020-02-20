@@ -1,12 +1,24 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
+import AppNav from "components/AppNav";
+import AppFooter from "components/Footer";
+
 import theme from "utils/theme";
 
-const Layout: React.FC<React.ReactNode> = ({ children }) => {
+interface LayoutProps {
+  isApp?: boolean;
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ isApp, children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <main>{children}</main>
+      <main>
+        {isApp && <AppNav />}
+        {children}
+        {isApp && <AppFooter />}
+      </main>
     </ThemeProvider>
   );
 };
