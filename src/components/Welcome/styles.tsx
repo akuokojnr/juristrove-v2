@@ -79,11 +79,12 @@ const ActivityWrap = styled.div`
   li {
     list-style-type: none;
     border-bottom: 1px solid ${({ theme }) => theme.colors.limeGray};
+    transition: all ease 150ms;
 
     a {
       color: ${({ theme }) => theme.colors.text};
       font-size: 1.125rem;
-      padding: 1rem 0;
+      padding: 0.8rem;
       margin-bottom: 0.5rem;
       display: flex;
       flex-direction: column;
@@ -92,7 +93,6 @@ const ActivityWrap = styled.div`
     span {
       font-size: 0.85rem;
       color: ${({ theme }) => theme.colors.smallText};
-      margin-top: 0.5rem;
     }
 
     :last-child {
@@ -101,6 +101,10 @@ const ActivityWrap = styled.div`
       a {
         margin-bottom: 0;
       }
+    }
+
+    :hover {
+      background: rgba(91, 93, 92, 0.05);
     }
   }
 `;
