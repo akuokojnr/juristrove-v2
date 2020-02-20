@@ -1,12 +1,18 @@
 import React from "react";
+import uuid from "uuid/v4";
 
 import { Blurb, ActivityWrap } from "./styles";
 
 interface WelcomeProps {
   username: string;
+  data: Array<{
+    title: string;
+    path: string;
+    timestamp: string;
+  }>;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({ username }) => (
+const Welcome: React.FC<WelcomeProps> = ({ username, data }) => (
   <>
     <Blurb>
       <h3>Hello {username}!</h3>
@@ -15,24 +21,14 @@ const Welcome: React.FC<WelcomeProps> = ({ username }) => (
     <ActivityWrap>
       <p>Activity summary</p>
       <ul>
-        <li>
-          <a href="#">
-            Re Akoto & 7 Others
-            <span>10 hours ago</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Prof. Stephen Kwaku Asare v Attorney General
-            <span>Yesterday</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Merritt v Merritt
-            <span>Last week</span>
-          </a>
-        </li>
+        {data.map(({ title, path, timestamp }) => (
+          <li key={uuid()}>
+            <a href={path}>
+              {title}
+              <span>{timestamp}</span>
+            </a>
+          </li>
+        ))}
       </ul>
     </ActivityWrap>
   </>
