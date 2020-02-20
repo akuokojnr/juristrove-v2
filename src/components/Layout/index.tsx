@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
-import Sidebar from "components/Sidebar";
+import AppNav from "components/AppNav";
 
 import theme from "utils/theme";
 
@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ isApp, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <main>
-        {isApp && <Sidebar />}
+        {isApp && <AppNav />}
         {children}
       </main>
     </ThemeProvider>
