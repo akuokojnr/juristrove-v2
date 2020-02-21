@@ -28,12 +28,26 @@ const Favorites: React.FC = () => {
   return (
     <Wrapper>
       <Categories>
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
-        <Category />
+        <Category
+          name="Uncategorized"
+          description="Some short description"
+          date="June 11, 2020"
+        />
+        <Category
+          name="Contract"
+          description="Some short description"
+          date="June 11, 2020"
+        />
+        <Category
+          name="Research"
+          description="Some short description"
+          date="June 11, 2020"
+        />
+        <Category
+          name="Supreme court"
+          description="Some short description"
+          date="June 11, 2020"
+        />
       </Categories>
       <List data={data} />
     </Wrapper>

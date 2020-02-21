@@ -2,12 +2,17 @@ import React from "react";
 
 import { Card } from "./styles";
 
-const Favorite: React.FC = () => (
+interface CategoryProps {
+  name: string;
+  description: string;
+  date: string;
+}
+const Category: React.FC<CategoryProps> = ({ name, description, date }) => (
   <Card>
-    <p>Uncategorized</p>
-    <p>Some small description</p>
-    <p>January 2, 2019</p>
+    <p>{name}</p>
+    <p>{description}</p>
+    <p>{date}</p>
   </Card>
 );
 
-export default Favorite;
+export default Category;
