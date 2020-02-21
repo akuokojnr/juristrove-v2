@@ -19,7 +19,7 @@ const Welcome: React.FC<WelcomeProps> = ({ username, data }) => (
       <p>Welcome back to Juristrove.</p>
     </Blurb>
     <ActivityWrap>
-      <p>Activity summary</p>
+      <p>Recent</p>
       {data ? (
         <ul>
           {data.map(({ title, path, timestamp }) => (
