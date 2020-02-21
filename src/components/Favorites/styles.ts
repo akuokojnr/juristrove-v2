@@ -3,6 +3,7 @@ import styled from "styled-components";
 import media from "utils/media";
 
 import { ReactComponent as Back } from "assets/icons/back.svg";
+import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
 
 const Categories = styled.section`
   display: grid;
@@ -70,7 +71,7 @@ const Card = styled.div`
 
 const Lists = styled.div`
   margin: 2rem 0;
-  padding: 2rem 1.8rem;
+  padding: 1.4rem 1rem;
   border-radius: 11px;
   border: 1.7px solid ${({ theme }) => theme.colors.limeGray};
 
@@ -96,6 +97,8 @@ const Lists = styled.div`
 
   li {
     list-style-type: none;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid ${({ theme }) => theme.colors.limeGray};
     transition: all ease 150ms;
 
@@ -106,6 +109,7 @@ const Lists = styled.div`
       margin-bottom: 0.5rem;
       display: flex;
       flex-direction: column;
+      width: 85%;
     }
 
     span {
@@ -126,6 +130,35 @@ const Lists = styled.div`
       border-radius: 6px;
     }
   }
+`;
+
+const BookmarkIcon = styled(Bookmark)`
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  transform: scale(0.75);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity ease-in 350ms;
+
+  path {
+    ${({ theme, active }) =>
+      active &&
+      `
+    fill: ${theme.colors.moderateCyan2};
+  `}
+  }
+
+  ${media.sm`
+    display: block;
+  `}
+
+  ${media.md`
+    margin-left: auto;
+    opacity: 0;
+
+    ${({ active }) => active && `opacity: 1;`}
+  `}
 `;
 
 const Head = styled.div`
@@ -156,4 +189,4 @@ const BackIcon = styled(Back)`
   `}
 `;
 
-export { Categories, Card, Lists, BackIcon, Head };
+export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head };
