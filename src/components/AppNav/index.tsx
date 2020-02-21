@@ -28,7 +28,7 @@ const LINKS = [
   {
     id: uuid(),
     name: "Saved cases",
-    url: "/saved-cases",
+    url: "/saved",
   },
 ];
 

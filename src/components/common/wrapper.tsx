@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import media from "utils/media"
+import media from "utils/media";
 
 const Wrapper = styled.div`
   max-width: 1380px;
