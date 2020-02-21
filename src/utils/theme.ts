@@ -34,9 +34,14 @@ export default {
     padding: 0.4rem 1.2rem;
     font-size: 1rem;
     outline: none;
-    color: #20433E;
-    background: #CAE6E2;
-    border: none;
+    color: #3c4257;
+    background: transparent;
+    border: 2px solid #e7eceb;
+
+    :hover {
+      border: 2px solid #CAE6E2;
+      background: #CAE6E2;
+    }
   `,
 
   boxShadow: `rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;`,
