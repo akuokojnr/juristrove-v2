@@ -185,7 +185,7 @@ const BackIcon = styled(Back)`
   margin-top: 0.1rem;
 
   ${media.md`
-    transform: scale(0.9)
+    transform: scale(0.8)
   `}
 `;
 
