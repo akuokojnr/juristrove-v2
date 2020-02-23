@@ -25,7 +25,7 @@ const Wrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  z-index: 1;
+  z-index: 3;
 `;
 
 const NavItems = styled.ul`

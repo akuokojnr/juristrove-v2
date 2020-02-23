@@ -183,10 +183,6 @@ const BackIcon = styled(Back)`
   position: absolute;
   left: 0;
   margin-top: 0.1rem;
-
-  ${media.md`
-    transform: scale(0.8)
-  `}
 `;
 
 export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head };
