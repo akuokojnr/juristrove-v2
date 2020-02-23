@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { navigate } from "@reach/router";
 
 import Layout from "components/Layout";
 import Reader from "components/Reader";
@@ -19,11 +20,13 @@ interface CaseTemplateProps {
 const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
   const { title, url } = data.case;
 
+  const goBack = () => navigate(-1);
+
   return (
     <Layout>
       <Wrapper>
         <Header>
-          <BackIcon />
+          <BackIcon onClick={goBack} />
           <p>{title}</p>
         </Header>
         <DocWrap>

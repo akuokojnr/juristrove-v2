@@ -1,5 +1,6 @@
 import React from "react";
 import uuid from "uuid/v4";
+import { navigate } from "@reach/router";
 
 import { Lists, BackIcon, Head } from "./styles";
 import ListItem from "./list-item";
@@ -14,10 +15,12 @@ interface FavoriteListProps {
 }
 
 const FavoriteList: React.FC<FavoriteListProps> = ({ title, data }) => {
+  const goBack = () => navigate(-1);
+
   return (
     <section>
       <Head>
-        <BackIcon />
+        <BackIcon onClick={goBack} />
         <p>Uncategorized</p>
       </Head>
       <Lists>
