@@ -1,5 +1,9 @@
 /* eslint-disable */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     title: `Juristrove 2.0`,
@@ -13,6 +17,7 @@ module.exports = {
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -43,5 +48,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATOCMS_API_TOKEN,
+        previewMode: false,
+        disableLiveReload: false,
+      },
+    },
   ],
 };

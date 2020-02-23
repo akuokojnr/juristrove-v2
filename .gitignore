@@ -57,6 +57,7 @@ typings/
 # gatsby files
 .cache/
 public
+_graphqlTypes.ts
 
 # Mac files
 .DS_Store

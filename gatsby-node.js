@@ -7,3 +7,30 @@ exports.onCreateWebpackConfig = ({ _, actions }) => {
     },
   });
 };
+
+exports.createPages = async ({ actions, graphql }) => {
+  const { data } = await graphql(`
+    query {
+      allDatoCmsCase {
+        edges {
+          node {
+            id
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  data.allDatoCmsCase.edges.forEach(edge => {
+    const slug = edge.node.slug;
+
+    actions.createPage({
+      path: slug,
+      component: path.resolve(`./src/templates/case.tsx`),
+      context: {
+        id: edge.node.id,
+      },
+    });
+  });
+};
