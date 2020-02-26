@@ -147,7 +147,7 @@ const BookmarkIcon = styled(Bookmark)`
   `}
 
   ${media.md`
-    margin-left: 0;
+    margin-left: auto;
     opacity: 0;
 
     ${({ active }) => active && `opacity: 1;`}
