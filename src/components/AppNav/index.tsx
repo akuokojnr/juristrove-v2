@@ -25,12 +25,12 @@ const LINKS = [
   {
     id: uuid(),
     name: "Search",
-    url: "/search",
+    url: "/app/search",
   },
   {
     id: uuid(),
     name: "Saved cases",
-    url: "/saved",
+    url: "/app/saved",
   },
 ];
 
