@@ -25,9 +25,17 @@ const Header = styled.div`
   z-index: 10;
 
   p {
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     font-weight: 500;
+    max-width: 80%;
   }
+
+  ${media.md`
+    p {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  `}
 `;
 
 const BackIcon = styled(Back)`
@@ -36,8 +44,12 @@ const BackIcon = styled(Back)`
   transform: scale(0.4);
   cursor: pointer;
   position: absolute;
-  left: 2rem;
+  left: 0;
   margin-top: 0.1rem;
+
+  ${media.md`
+    left: 2rem;
+  `}
 `;
 
 const DocWrap = styled.section`

@@ -9,8 +9,6 @@ import { Wrapper, Header, BackIcon, DocWrap } from "./styles";
 
 import { CaseTemplateQuery } from "_graphqlTypes";
 
-import case1 from "cases/case-1.pdf";
-
 interface CaseTemplateProps {
   data: {
     case: CaseTemplateQuery;
@@ -30,7 +28,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
           <p>{title}</p>
         </Header>
         <DocWrap>
-          <Reader caseUrl={case1} />
+          <Reader caseUrl={url} />
         </DocWrap>
       </Wrapper>
     </Layout>
