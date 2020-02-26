@@ -105,6 +105,7 @@ const HitWrap = styled.article`
 
     a {
       border-right: none;
+      max-width: 90%;
     }
 
     h3 {
