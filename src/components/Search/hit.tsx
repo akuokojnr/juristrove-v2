@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
+import { Snippet } from "react-instantsearch-dom";
 
 import { HitWrap, BookmarkIcon } from "./styles";
 
-const Hit: React.FC = () => {
+interface HitProps {
+  hit: {
+    title: string;
+    slug: string;
+    content: string;
+  };
+}
+
+const Hit: React.FC<HitProps> = ({ hit }) => {
   const [isCaseSaved, saveCase] = useState(false);
 
   const handleClick = () => {
@@ -12,13 +21,9 @@ const Hit: React.FC = () => {
 
   return (
     <HitWrap>
-      <Link to="/case">
-        <h4>Prof. Stephen Kwaku Asare v Attorney-General</h4>
-        <p>
-          lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
-          dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
-          lorem ipsum dolor sit amet
-        </p>
+      <Link to={hit.slug}>
+        <h4>{hit.title}</h4>
+        <Snippet hit={hit} attribute="content" />
       </Link>
       <BookmarkIcon onClick={handleClick} active={isCaseSaved} />
     </HitWrap>

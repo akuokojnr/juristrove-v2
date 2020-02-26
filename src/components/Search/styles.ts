@@ -5,7 +5,7 @@ import media from "utils/media";
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
 
-const SearchWrap = styled.div`
+const SearchWrap = styled.form`
   position: relative;
   width: 100%;
   background: rgba(32, 68, 64, 0.15);
@@ -47,12 +47,20 @@ const SearchIcon = styled(Search)`
 
 const HitsWrapper = styled.section`
   margin-top: 6rem;
+
+  .ais-Hits-list {
+    margin-left: 0 !important;
+
+    li {
+      margin-bottom: 2rem;
+      list-style-type: none;
+    }
+  }
 `;
 
 const HitWrap = styled.article`
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
   padding: 1.4rem;
   border-radius: 11px;
   border: 1.7px solid ${({ theme }) => theme.colors.limeGray};
@@ -76,6 +84,7 @@ const HitWrap = styled.article`
     margin-bottom: 0.9rem;
     font-size: 1.15rem;
     font-weight: 600;
+    font-family: "Cabin";
   }
 
   p {
@@ -108,6 +117,11 @@ const HitWrap = styled.article`
       max-width: 70%;
     }
   `}
+
+  .ais-Snippet-highlighted {
+    color: ${({ theme }) => theme.colors.moderateCyan2};
+    font-weight: 700;
+  }
 `;
 
 const BookmarkIcon = styled(Bookmark)`
@@ -140,6 +154,12 @@ const BookmarkIcon = styled(Bookmark)`
   `}
 `;
 
+const Root = styled.div`
+  position: relative;
+  display: grid;
+  grid-gap: 1em;
+`;
+
 export {
   SearchWrap,
   SearchInput,
@@ -147,4 +167,5 @@ export {
   HitsWrapper,
   HitWrap,
   BookmarkIcon,
+  Root,
 };
