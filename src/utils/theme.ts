@@ -10,6 +10,7 @@ export default {
     grayishBlue: "#F6F9FB",
     limeGray: "#e7eceb",
     smallText: "#657786",
+    error: "#f14668",
     white: "#FFF",
     black: "#000",
   },

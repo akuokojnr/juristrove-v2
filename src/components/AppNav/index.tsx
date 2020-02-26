@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import uuid from "uuid/v4";
+
+import useFirebase from "utils/hooks/useFirebase";
 
 import {
   Wrap,
@@ -33,9 +35,22 @@ const LINKS = [
 ];
 
 const Sidebar = () => {
+  const firebase = useFirebase();
+
   const [isOpen, toggleMenu] = useState(false);
 
   const handleClick = () => toggleMenu(!isOpen);
+
+  const signOut = async () => {
+    try {
+      await firebase.auth().signOut();
+
+      localStorage.removeItem("User")
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Nav>
@@ -68,7 +83,7 @@ const Sidebar = () => {
           ))}
         </MobileNav>
 
-        <Button>Log out</Button>
+        <Button onClick={signOut}>Log out</Button>
       </Wrap>
     </Nav>
   );

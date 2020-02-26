@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Link } from "gatsby";
 
-import media from "utils/media";
-
 const FormWrap = styled.form`
   margin: 2rem 0;
   width: 100%;
@@ -14,4 +12,13 @@ const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.moderateCyan};
 `;
 
-export { FormWrap, StyledLink };
+const Error = styled.span`
+  max-width: 400px;
+  width: 100%;
+  font-size: 0.85rem;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.error};
+  margin-bottom: -0.5rem;
+`
+
+export { FormWrap, StyledLink, Error };
