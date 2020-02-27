@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Form from "components/Form";
 
-import { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset } from "./styles";
+import {
+  Wrap,
+  ImgWrap,
+  ImgTitle,
+  FormWrap,
+  Title,
+  Reset,
+  Status,
+} from "./styles";
 
 interface FormPageProps {
   type: "sign-in" | "sign-up" | "reset";
@@ -12,6 +20,8 @@ interface FormPageProps {
 }
 
 const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
+  const [resetLinkStatus, setResetLinkStatus] = useState<boolean>(false);
+
   const data = useStaticQuery(graphql`
     query {
       image: file(name: { eq: "woman-with-laptop" }) {
@@ -39,10 +49,22 @@ const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
       </ImgWrap>
       <FormWrap>
         <Title>{title}</Title>
-        {type === "reset" && (
-          <Reset>Enter the email associated with your account.</Reset>
+        {resetLinkStatus ? (
+          <Status>
+            <p>Check your email for password reset link.</p>
+          </Status>
+        ) : (
+          <>
+            {type === "reset" && (
+              <Reset>Enter the email associated with your account.</Reset>
+            )}
+            <Form
+              type={type}
+              buttonText={buttonText}
+              setStatus={setResetLinkStatus}
+            />
+          </>
         )}
-        <Form type={type} buttonText={buttonText} />
       </FormWrap>
     </Wrap>
   );

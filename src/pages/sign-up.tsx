@@ -5,6 +5,7 @@ import RegisterForm from "components/FormPage";
 import SEO from "components/SEO";
 
 const IndexPage: React.FC = () => {
+
   return (
     <>
       <SEO title="Sign up" />

@@ -66,4 +66,15 @@ const Reset = styled.span`
   margin-top: -1rem;
 `;
 
-export { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset };
+const Status = styled.div`
+  max-width: 100%;
+
+  ${media.md`
+  	max-width: 400px;
+  `}
+
+  p {
+    font-size: 1.1rem;
+  }
+`;
+export { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset, Status };

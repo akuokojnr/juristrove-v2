@@ -8,6 +8,7 @@ interface InputProps {
   label: string;
   name: string;
   placeholder?: string;
+  value: string;
   handleChange: (value: string) => void;
 }
 
@@ -16,6 +17,7 @@ const InputEl: React.FC<InputProps> = ({
   label,
   hasForgotPassword,
   name,
+  value,
   placeholder,
   handleChange,
 }) => {
@@ -34,8 +36,10 @@ const InputEl: React.FC<InputProps> = ({
       <Input
         type={type}
         name={name}
+        value={value}
         placeholder={placeholder}
         onChange={e => handleChange(e.target.value)}
+        required
       />
     </Label>
   );

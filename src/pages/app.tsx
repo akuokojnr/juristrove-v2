@@ -1,39 +1,21 @@
 import React from "react";
+import { Router } from "@reach/router";
 
-import Layout from "components/Layout";
-import SEO from "components/SEO";
-import Welcome from "components/Welcome";
-import { Wrapper } from "components/common";
+import PrivateRoute from "components/PrivateRoute";
+import Dashboard from "components/Dashboard";
+import SearchPage from "components/SearchPage";
+import SavedCasesPage from "components/SavedCasesPage";
 
-const data = [
-  {
-    title: "Re Akoto & 7 Others",
-    path: "#",
-    timestamp: "10 hours ago",
-  },
-  {
-    title: "Prof. Stephen Kwaku Asare v Attorney General",
-    path: "#",
-    timestamp: "Yesterday",
-  },
-  {
-    title: "Acheampong v Acheampong",
-    path: "#",
-    timestamp: "2 weeks ago",
-  },
-];
-
-const Dashboard: React.FC = () => {
+const App: React.FC = () => {
   return (
     <>
-      <SEO title="Home" />
-      <Layout isApp={true}>
-        <Wrapper>
-          <Welcome username="Daniel" data={data} />
-        </Wrapper>
-      </Layout>
+      <Router basepath="/app">
+        <PrivateRoute path="/" component={Dashboard} />
+        <PrivateRoute path="/search" component={SearchPage} />
+        <PrivateRoute path="/saved" component={SavedCasesPage} />
+      </Router>
     </>
   );
 };
 
-export default Dashboard;
+export default App;
