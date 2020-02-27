@@ -111,4 +111,9 @@ const ActivityWrap = styled.div`
   }
 `;
 
-export { Blurb, ActivityWrap };
+const NoData = styled.span`
+  font-size: 1.1rem;
+  color: ${({ theme }) => theme.colors.text};
+`
+
+export { Blurb, ActivityWrap, NoData };
