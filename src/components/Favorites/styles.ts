@@ -185,4 +185,12 @@ const BackIcon = styled(Back)`
   margin-top: 0.1rem;
 `;
 
-export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head };
+const NoData = styled.div`
+  p {
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.colors.text};
+    text-align: center;
+  }
+`;
+
+export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head, NoData };
