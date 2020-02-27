@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 
 import getFirebase from "./firebase";
 
@@ -11,3 +11,5 @@ export default function() {
 
   return instance;
 }
+
+export const UserContext = createContext(null);

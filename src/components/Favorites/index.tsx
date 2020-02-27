@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import uuid from "uuid/v4";
 
 import { Wrapper } from "components/common";
 import Category from "./category";
@@ -6,7 +7,7 @@ import List from "./lists";
 
 import { Categories, NoData } from "./styles";
 
-import useFirebase from "utils/hooks/useFirebase";
+import { UserContext } from "utils/hooks/useFirebase";
 
 const data = [
   {
@@ -27,44 +28,17 @@ const data = [
 ];
 
 const Favorites: React.FC = () => {
-  const [user, setUser] = useState({});
-  const firebase = useFirebase();
-
+  const { user } = useContext(UserContext);
   const categories = user.savedCases;
-
-  let {
-    user: { email },
-  } = JSON.parse(localStorage.getItem("User"));
-
-  useEffect(() => {
-    if (!firebase) return;
-
-    const getUserData = async () => {
-      try {
-        let ref = await firebase
-          .firestore()
-          .collection("users")
-          .doc(email);
-
-        let doc = await ref.get();
-        setUser(doc.data());
-        console.log(doc.data());
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getUserData();
-  }, [firebase]);
 
   return (
     <Wrapper>
       {categories && categories.length > 0 ? (
         <Categories>
           <>
-            {categories.map(({ id, category, description, createdAt }) => (
+            {categories.map(({ category, description, createdAt }) => (
               <Category
-                key={id}
+                key={uuid}
                 name={category}
                 description={description}
                 date={createdAt}
@@ -84,26 +58,3 @@ const Favorites: React.FC = () => {
 };
 
 export default Favorites;
-
-{
-  /* <Category
-          name="Uncategorized"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-        <Category
-          name="Contract"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-        <Category
-          name="Research"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-        <Category
-          name="Supreme court"
-          description="Some short description"
-          date="June 11, 2020"
-        /> */
-}

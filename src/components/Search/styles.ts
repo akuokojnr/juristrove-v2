@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DialogOverlay, DialogContent } from "@reach/dialog";
 
 import media from "utils/media";
 
@@ -161,6 +162,25 @@ const Root = styled.div`
   grid-gap: 1em;
 `;
 
+const StyledDialogContent = styled(DialogContent)`
+  max-width: 400px;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Close = styled.button`
+  background: none;
+  border: none;
+  margin-left: auto !important;
+  transform: scale(1.2);
+  cursor: pointer;
+
+  span {
+    font-size: 1rem;
+  }
+`;
+
 export {
   SearchWrap,
   SearchInput,
@@ -169,4 +189,6 @@ export {
   HitWrap,
   BookmarkIcon,
   Root,
+  StyledDialogContent,
+  Close,
 };
