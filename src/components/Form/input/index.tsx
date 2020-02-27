@@ -39,6 +39,7 @@ const InputEl: React.FC<InputProps> = ({
         value={value}
         placeholder={placeholder}
         onChange={e => handleChange(e.target.value)}
+        required
       />
     </Label>
   );

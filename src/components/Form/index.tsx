@@ -17,6 +17,7 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
   const firebase = useFirebase();
 
+  const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -27,7 +28,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
         .auth()
         .signInWithEmailAndPassword(email, password);
 
-      localStorage.setItem("User", user);
+      localStorage.setItem("User", JSON.stringify(user));
       navigate("/app", { replace: true });
     } catch (err) {
       setError(err.message);
@@ -36,11 +37,20 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
 
   const signUp = async () => {
     try {
-      const user = firebase
+      const user = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
 
-      localStorage.setItem("User", user);
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(email).set({
+          username,
+          savedCases: [],
+          recentlyView: [],
+        });
+
+      localStorage.setItem("User", JSON.stringify(user));
       navigate("/app", { replace: true });
     } catch (err) {
       setError(err.message);
@@ -77,6 +87,15 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
     <>
       <Error>{error}</Error>
       <FormWrap onSubmit={e => handleSubmit(e)}>
+        {type === "sign-up" && (
+          <Input
+            type="text"
+            label="Username"
+            name="username"
+            value={username}
+            handleChange={setUsername}
+          />
+        )}
         <Input
           type="email"
           label="Email"
