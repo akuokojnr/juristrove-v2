@@ -28,8 +28,10 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
         .auth()
         .signInWithEmailAndPassword(email, password);
 
-      localStorage.setItem("User", JSON.stringify(user));
-      navigate("/app", { replace: true });
+      if (typeof window !== `undefined`) {
+        window.localStorage.setItem("User", JSON.stringify(user));
+        navigate("/app", { replace: true });
+      }
     } catch (err) {
       setError(err.message);
     }
@@ -44,14 +46,17 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       await firebase
         .firestore()
         .collection("users")
-        .doc(email).set({
+        .doc(email)
+        .set({
           username,
           savedCases: [],
           recentlyView: [],
         });
 
-      localStorage.setItem("User", JSON.stringify(user));
-      navigate("/app", { replace: true });
+      if (typeof window !== `undefined`) {
+        window.localStorage.setItem("User", JSON.stringify(user));
+        navigate("/app", { replace: true });
+      }
     } catch (err) {
       setError(err.message);
     }

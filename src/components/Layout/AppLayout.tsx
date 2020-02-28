@@ -15,9 +15,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [user, setUser] = useState({});
   const [userRef, setUserRef] = useState({});
 
-  let {
-    user: { email },
-  } = JSON.parse(localStorage.getItem("User"));
+  let authUser = typeof window !== `undefined` && JSON.parse(window.localStorage.getItem("User"));
 
   useEffect(() => {
     if (!firebase) return;
@@ -27,7 +25,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         let ref = await firebase
           .firestore()
           .collection("users")
-          .doc(email);
+          .doc(authUser.user.email);
 
         setUserRef(ref);
 

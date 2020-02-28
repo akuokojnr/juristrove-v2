@@ -13,19 +13,17 @@ const Dashboard: React.FC = () => {
 
   const data = user.recentlyView;
 
-  let {
-    user: { email },
-  } = JSON.parse(localStorage.getItem("User"));
-
   useEffect(() => {
     if (!firebase) return;
+
+    let authUser = typeof window !== `undefined` && JSON.parse(window.localStorage.getItem("User"));
 
     const getUserData = async () => {
       try {
         let ref = await firebase
           .firestore()
           .collection("users")
-          .doc(email);
+          .doc(authUser.user.email);
 
         let doc = await ref.get();
         setUser(doc.data());

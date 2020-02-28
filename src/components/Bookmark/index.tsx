@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
 
 import Input from "components/Form/input";
 import Button from "components/Button";
@@ -29,7 +29,7 @@ const Bookmark: React.FC<BookmarkProps> = ({
     let data = {
       title,
       slug,
-      savedAt: new Date().toDateString(),
+      savedAt: new Date().toString(),
       category,
     };
 

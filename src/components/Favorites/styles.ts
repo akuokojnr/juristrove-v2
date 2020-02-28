@@ -162,7 +162,6 @@ const BookmarkIcon = styled(Bookmark)`
 `;
 
 const Head = styled.div`
-  margin-top: 6rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -190,6 +189,7 @@ const NoData = styled.div`
     font-size: 1.3rem;
     color: ${({ theme }) => theme.colors.text};
     text-align: center;
+    text-transform: capitalize;
   }
 `;
 

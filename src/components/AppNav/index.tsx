@@ -45,8 +45,10 @@ const Sidebar = () => {
     try {
       await firebase.auth().signOut();
 
-      localStorage.removeItem("User")
-      navigate("/", { replace: true });
+      if (typeof window !== `undefined`) {
+        window.localStorage.removeItem("User");
+        navigate("/", { replace: true });
+      }
     } catch (error) {
       console.log(error);
     }
