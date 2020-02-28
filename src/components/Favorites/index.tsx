@@ -1,55 +1,59 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import uuid from "uuid/v4";
 
 import { Wrapper } from "components/common";
 import Category from "./category";
 import List from "./lists";
 
-import { Categories } from "./styles";
+import { Categories, NoData } from "./styles";
 
-const data = [
-  {
-    title: "Re Akoto & 7 Others",
-    path: "#",
-    timestamp: "10 hours ago",
-  },
-  {
-    title: "Prof. Stephen Kwaku Asare v Attorney General",
-    path: "#",
-    timestamp: "Yesterday",
-  },
-  {
-    title: "Acheampong v Acheampong",
-    path: "#",
-    timestamp: "2 weeks ago",
-  },
-];
+import { UserContext } from "utils/hooks/useFirebase";
 
 const Favorites: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const { user } = useContext(UserContext);
+  const categories = user.savedCases;
+  let data =
+    categories && categories.filter(i => i.category === activeCategory);
+
+  const handleClick = category => {
+    setActiveCategory(category);
+    console.log(categories);
+  };
+
   return (
     <Wrapper>
-      <Categories>
-        <Category
-          name="Uncategorized"
-          description="Some short description"
-          date="June 11, 2020"
+      {!activeCategory && (
+        <>
+          {categories && categories.length > 0 ? (
+            <Categories>
+              <>
+                {categories.map(({ category, description, savedAt }) => (
+                  <Category
+                    key={uuid()}
+                    name={category}
+                    description={description}
+                    date={savedAt}
+                    handleClick={() => handleClick(category)}
+                  />
+                ))}
+              </>
+            </Categories>
+          ) : (
+            <NoData>
+              <p>You have not saved any case yet.</p>
+            </NoData>
+          )}
+        </>
+      )}
+      {activeCategory && (
+        <List
+          title={activeCategory}
+          data={data}
+          handleBack={setActiveCategory}
         />
-        <Category
-          name="Contract"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-        <Category
-          name="Research"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-        <Category
-          name="Supreme court"
-          description="Some short description"
-          date="June 11, 2020"
-        />
-      </Categories>
-      <List data={data} />
+      )}
     </Wrapper>
   );
 };

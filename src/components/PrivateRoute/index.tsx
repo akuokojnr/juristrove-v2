@@ -12,11 +12,13 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   location,
   ...rest
 }) => {
-  const user = localStorage.getItem("User");
+  if (typeof window !== `undefined`) {
+    const user = window.localStorage.getItem("User");
 
-  if (!user && location.pathname !== "/") {
-    navigate("/", { replace: true });
-    return null;
+    if (!user && location.pathname !== "/") {
+      navigate("/", { replace: true });
+      return null;
+    }
   }
 
   return <Component {...rest} />;

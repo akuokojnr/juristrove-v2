@@ -1,33 +1,42 @@
 import React from "react";
 import uuid from "uuid/v4";
-import { navigate } from "@reach/router";
 
 import { Lists, BackIcon, Head } from "./styles";
 import ListItem from "./list-item";
 
 interface FavoriteListProps {
-  title: string;
+  title: string | null;
   data: Array<{
     title: string;
     path: string;
     timestamp: string;
   }>;
+  handleBack: (value: null) => void;
 }
 
-const FavoriteList: React.FC<FavoriteListProps> = ({ title, data }) => {
-  const goBack = () => navigate(-1);
+const FavoriteList: React.FC<FavoriteListProps> = ({
+  title,
+  data,
+  handleBack,
+}) => {
+  const goBack = () => handleBack(null);
 
   return (
     <section>
       <Head>
         <BackIcon onClick={goBack} />
-        <p>Uncategorized</p>
+        <p>{title}</p>
       </Head>
       <Lists>
         {data ? (
           <ul>
-            {data.map(item => (
-              <ListItem key={uuid()} {...item} />
+            {data.map(({ title, slug, savedAt }) => (
+              <ListItem
+                key={uuid()}
+                title={title}
+                slug={slug}
+                savedAt={savedAt}
+              />
             ))}
           </ul>
         ) : (

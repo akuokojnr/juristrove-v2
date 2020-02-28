@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
 import { Snippet } from "react-instantsearch-dom";
+import { DialogOverlay } from "@reach/dialog";
 
-import { HitWrap, BookmarkIcon } from "./styles";
+import Bookmark from "components/Bookmark";
+
+import { HitWrap, BookmarkIcon, StyledDialogContent, Close } from "./styles";
+import "@reach/dialog/styles.css";
 
 interface HitProps {
   hit: {
@@ -13,20 +17,38 @@ interface HitProps {
 }
 
 const Hit: React.FC<HitProps> = ({ hit }) => {
-  const [isCaseSaved, saveCase] = useState(false);
+  const [isCaseSaved, saveCase] = useState<boolean>(false);
+  const [showDialog, setShowDialog] = useState<boolean>(false);
 
-  const handleClick = () => {
-    saveCase(!isCaseSaved);
+  const open = () => {
+    setShowDialog(true);
   };
 
+  const close = () => setShowDialog(false);
+
   return (
-    <HitWrap>
-      <Link to={hit.slug}>
-        <h4>{hit.title}</h4>
-        <Snippet hit={hit} attribute="content" />
-      </Link>
-      <BookmarkIcon onClick={handleClick} active={isCaseSaved} />
-    </HitWrap>
+    <>
+      <HitWrap>
+        <Link to={hit.slug}>
+          <h4>{hit.title}</h4>
+          <Snippet hit={hit} attribute="content" />
+        </Link>
+        <BookmarkIcon onClick={open} active={isCaseSaved} />
+      </HitWrap>
+      <DialogOverlay isOpen={showDialog} onDismiss={close}>
+        <StyledDialogContent>
+          <Close className="close-button" onClick={close}>
+            <span aria-hidden>×</span>
+          </Close>
+          <Bookmark
+            hasSaved={saveCase}
+            title={hit.title}
+            slug={hit.slug}
+            closeModal={close}
+          />
+        </StyledDialogContent>
+      </DialogOverlay>
+    </>
   );
 };
 

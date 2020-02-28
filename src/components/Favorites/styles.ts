@@ -162,7 +162,6 @@ const BookmarkIcon = styled(Bookmark)`
 `;
 
 const Head = styled.div`
-  margin-top: 6rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -185,4 +184,13 @@ const BackIcon = styled(Back)`
   margin-top: 0.1rem;
 `;
 
-export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head };
+const NoData = styled.div`
+  p {
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.colors.text};
+    text-align: center;
+    text-transform: capitalize;
+  }
+`;
+
+export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head, NoData };

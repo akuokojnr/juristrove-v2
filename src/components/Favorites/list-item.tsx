@@ -1,14 +1,19 @@
+import ReactTimeAgo from "react-time-ago";
 import React, { useState } from "react";
+import JavascriptTimeAgo from "javascript-time-ago";
+
+import en from "javascript-time-ago/locale/en";
+JavascriptTimeAgo.locale(en);
 
 import { BookmarkIcon } from "./styles";
 
 interface ListItemProps {
-  path: string;
+  slug: string;
   title: string;
-  timestamp: string;
+  savedAt: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ path, title, timestamp }) => {
+const ListItem: React.FC<ListItemProps> = ({ slug, title, savedAt }) => {
   const [isCaseSaved, saveCase] = useState(true);
 
   const handleClick = () => {
@@ -17,9 +22,12 @@ const ListItem: React.FC<ListItemProps> = ({ path, title, timestamp }) => {
 
   return (
     <li>
-      <a href={path}>
+      <a href={`/${slug}`}>
         {title}
-        <span>Saved {timestamp}</span>
+        <span>
+          Saved{" "}
+          <ReactTimeAgo date={savedAt} />
+        </span>
       </a>
       <BookmarkIcon onClick={handleClick} active={isCaseSaved} />
     </li>

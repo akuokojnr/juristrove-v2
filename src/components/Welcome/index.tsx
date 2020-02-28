@@ -1,14 +1,14 @@
 import React from "react";
 import uuid from "uuid/v4";
 
-import { Blurb, ActivityWrap } from "./styles";
+import { Blurb, ActivityWrap, NoData } from "./styles";
 
 interface WelcomeProps {
   username: string;
   data: Array<{
     title: string;
-    path: string;
-    timestamp: string;
+    url: string;
+    createdAt: string;
   }>;
 }
 
@@ -20,19 +20,19 @@ const Welcome: React.FC<WelcomeProps> = ({ username, data }) => (
     </Blurb>
     <ActivityWrap>
       <p>Recent</p>
-      {data ? (
+      {data && data.length > 0 ? (
         <ul>
-          {data.map(({ title, path, timestamp }) => (
+          {data.map(({ title, url, createdAt }) => (
             <li key={uuid()}>
-              <a href={path}>
+              <a href={url}>
                 {title}
-                <span>{timestamp}</span>
+                <span>{createdAt}</span>
               </a>
             </li>
           ))}
         </ul>
       ) : (
-        <span>You have no read any case yet.</span>
+        <NoData>Your recently read cases will appear here.</NoData>
       )}
     </ActivityWrap>
   </>
