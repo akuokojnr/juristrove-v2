@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { navigate } from "@reach/router";
 
 import Layout from "components/Layout";
 import Reader from "components/Reader";
