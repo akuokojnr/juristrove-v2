@@ -5,7 +5,7 @@ import { navigate } from "@reach/router";
 import Layout from "components/Layout";
 import Reader from "components/Reader";
 
-import { Wrapper, Header, BackIcon, DocWrap } from "./styles";
+import { DocWrap } from "./styles";
 
 import { CaseTemplateQuery } from "_graphqlTypes";
 
