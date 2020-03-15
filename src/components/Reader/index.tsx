@@ -6,33 +6,21 @@ import { Helmet } from "react-helmet";
 
 interface ReaderProps {
   caseUrl: string;
+  title: string;
 }
 
-/* const Reader: React.FC<ReaderProps> = ({ caseUrl }) => {
-  const [numOfPages, setNumOfPages] = useState(0);
-
-  const onDocLoadSuccess = document => {
-    const { numPages } = document;
-    setNumOfPages(numPages);
+const Reader2: React.FC<ReaderProps> = ({ caseUrl, title }) => {
+  const viewerConfig = {
+    showAnnotationTools: true,
+    enableFormFilling: false,
+    showLeftHandPanel: true,
+    showDownloadPDF: true,
+    showPrintPDF: true,
+    showPageControls: true,
+    dockPageControls: false,
+    defaultViewMode: "",
   };
 
-  const getPages = () =>
-    Array.from(new Array(numOfPages), (_, i) => (
-      <PageWrap key={`page_${i++}`}>
-        <Page pageNumber={i++} width={890} />
-      </PageWrap>
-    ));
-
-  return (
-    <Document file={caseUrl} onLoadSuccess={onDocLoadSuccess}>
-      {getPages()}
-    </Document>
-  );
-};
-
-export default Reader; */
-
-const Reader2: React.FC<ReaderProps> = ({ caseUrl }) => {
   const initializeViewer = () => {
     var adobeDCView = new AdobeDC.View({
       clientId: process.env.GATSBY_ADOBE_VIEW_CLIENT_ID,
@@ -44,8 +32,8 @@ const Reader2: React.FC<ReaderProps> = ({ caseUrl }) => {
           url: caseUrl,
         },
       },
-      metaData: { fileName: "Bodea Brochure.pdf" },
-    });
+      metaData: { fileName: title },
+    }, viewerConfig);
   };
 
   useEffect(() => {

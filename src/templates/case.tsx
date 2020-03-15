@@ -21,16 +21,9 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
 
   return (
     <Layout>
-      {/* <Wrapper>
-        <Header>
-          <BackIcon onClick={goBack} />
-          <p>{title}</p>
-        </Header>
-        <DocWrap>
-          <Reader caseUrl={url} />
-        </DocWrap>
-      </Wrapper> */}
-      <Reader caseUrl={url} />
+      <DocWrap>
+        <Reader caseUrl={url} title={title} />
+      </DocWrap>
     </Layout>
   );
 };

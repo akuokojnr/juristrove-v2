@@ -53,13 +53,8 @@ const BackIcon = styled(Back)`
 `;
 
 const DocWrap = styled.section`
-  max-width: 890px;
-  width: auto;
-  margin: 7rem 1.5rem;
-
-  ${media.md`
-    margin: 8rem auto;
-  `}
+  height: 100vh;
+  width: 100vh;
 `;
 
 export { Wrapper, Header, BackIcon, DocWrap };
