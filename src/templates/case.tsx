@@ -17,7 +17,6 @@ interface CaseTemplateProps {
 
 const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
   const { title, url } = data.case;
-  const goBack = () => navigate(-1);
 
   return (
     <Layout>
