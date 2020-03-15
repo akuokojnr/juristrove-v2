@@ -21,7 +21,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
 
   return (
     <Layout>
-      <Wrapper>
+      {/* <Wrapper>
         <Header>
           <BackIcon onClick={goBack} />
           <p>{title}</p>
@@ -29,7 +29,8 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
         <DocWrap>
           <Reader caseUrl={url} />
         </DocWrap>
-      </Wrapper>
+      </Wrapper> */}
+      <Reader caseUrl={url} />
     </Layout>
   );
 };
