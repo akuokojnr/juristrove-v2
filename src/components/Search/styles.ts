@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { DialogOverlay, DialogContent } from "@reach/dialog";
 
 import media from "utils/media";
 
-import { ReactComponent as Search } from "assets/icons/search.svg";
-import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
+import { Search } from "@styled-icons/boxicons-regular/Search";
 
-const SearchWrap = styled.form`
+export const SearchWrap = styled.form`
   position: relative;
   width: 100%;
   background: rgba(32, 68, 64, 0.15);
@@ -15,7 +13,7 @@ const SearchWrap = styled.form`
   align-items: center;
 `;
 
-const SearchInput = styled.input`
+export const SearchInput = styled.input`
   border: none;
   font-size: 1rem;
   padding: 1rem 0.8rem 1rem 0.8rem;
@@ -33,9 +31,7 @@ const SearchInput = styled.input`
   `}
 `;
 
-const SearchIcon = styled(Search)`
-  height: 30px;
-  width: 30px;
+export const SearchIcon = styled(Search)`
   margin-left: 0.9rem;
   margin-bottom: -0.23rem;
   opacity: 0.6;
@@ -46,7 +42,7 @@ const SearchIcon = styled(Search)`
   `}
 `;
 
-const HitsWrapper = styled.section`
+export const HitsWrapper = styled.section`
   margin-top: 6rem;
 
   .ais-Hits-list {
@@ -59,7 +55,7 @@ const HitsWrapper = styled.section`
   }
 `;
 
-const HitWrap = styled.article`
+export const HitWrap = styled.article`
   display: flex;
   align-items: center;
   padding: 1.4rem;
@@ -111,12 +107,10 @@ const HitWrap = styled.article`
 
     h3 {
       font-size: 1.3rem;
-      max-width: 70%;
     }
 
     p {
       font-size: 1rem;
-      max-width: 70%;
     }
   `}
 
@@ -126,69 +120,8 @@ const HitWrap = styled.article`
   }
 `;
 
-const BookmarkIcon = styled(Bookmark)`
-  display: none;
-  margin-left: 1rem;
-  width: 40px;
-  height: 40px;
-  transform: scale(0.85);
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity ease-in 350ms;
-
-  path {
-    ${({ theme, active }) =>
-      active &&
-      `
-    fill: ${theme.colors.moderateCyan2};
-  `}
-  }
-
-  ${media.sm`
-    display: block;
-  `}
-
-  ${media.md`
-    margin-left: auto;
-    opacity: 0;
-
-    ${({ active }) => active && `opacity: 1;`}
-  `}
-`;
-
-const Root = styled.div`
+export const Root = styled.div`
   position: relative;
   display: grid;
   grid-gap: 1em;
 `;
-
-const StyledDialogContent = styled(DialogContent)`
-  max-width: 400px;
-  border-radius: 11px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Close = styled.button`
-  background: none;
-  border: none;
-  margin-left: auto !important;
-  transform: scale(1.2);
-  cursor: pointer;
-
-  span {
-    font-size: 1rem;
-  }
-`;
-
-export {
-  SearchWrap,
-  SearchInput,
-  SearchIcon,
-  HitsWrapper,
-  HitWrap,
-  BookmarkIcon,
-  Root,
-  StyledDialogContent,
-  Close,
-};

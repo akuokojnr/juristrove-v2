@@ -16,7 +16,9 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     if (!firebase) return;
 
-    let authUser = typeof window !== `undefined` && JSON.parse(window.localStorage.getItem("User"));
+    let authUser =
+      typeof window !== `undefined` &&
+      JSON.parse(window.localStorage.getItem("User"));
 
     const getUserData = async () => {
       try {
@@ -37,7 +39,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Dashboard" />
       <Layout isApp={true}>
         <Wrapper>
           <Welcome username={user.username} data={data} />

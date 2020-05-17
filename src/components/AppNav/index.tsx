@@ -42,15 +42,17 @@ const Sidebar = () => {
   const handleClick = () => toggleMenu(!isOpen);
 
   const signOut = async () => {
-    try {
-      await firebase.auth().signOut();
+    if (firebase) {
+      try {
+        await firebase.auth().signOut();
 
-      if (typeof window !== `undefined`) {
-        window.localStorage.removeItem("User");
-        navigate("/", { replace: true });
+        if (typeof window !== `undefined`) {
+          window.localStorage.removeItem("User");
+          navigate("/", { replace: true });
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -59,9 +61,9 @@ const Sidebar = () => {
       <Wrap>
         <div>
           {isOpen ? (
-            <CloseIcon onClick={handleClick} />
+            <CloseIcon onClick={handleClick} size={30} />
           ) : (
-            <MenuIcon onClick={handleClick} />
+            <MenuIcon onClick={handleClick} size={30} />
           )}
         </div>
         <Brand to="/app">Juristrove</Brand>

@@ -2,15 +2,17 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "components/Layout";
+import SEO from "components/SEO";
 import Reader from "components/Reader";
 
 import { DocWrap } from "./styles";
 
-import { CaseTemplateQuery } from "_graphqlTypes";
-
 interface CaseTemplateProps {
   data: {
-    case: CaseTemplateQuery;
+    case: {
+      title: string;
+      url: string;
+    };
   };
 }
 
@@ -18,11 +20,14 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
   const { title, url } = data.case;
 
   return (
-    <Layout>
-      <DocWrap>
-        <Reader caseUrl={url} title={title} />
-      </DocWrap>
-    </Layout>
+    <>
+      <SEO title={title} />
+      <Layout>
+        <DocWrap>
+          <Reader caseUrl={url} title={title} />
+        </DocWrap>
+      </Layout>
+    </>
   );
 };
 

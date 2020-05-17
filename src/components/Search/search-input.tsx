@@ -5,10 +5,10 @@ import { SearchWrap, SearchInput, SearchIcon } from "./styles";
 
 export default connectSearchBox(({ refine, ...rest }) => (
   <SearchWrap>
-    <SearchIcon />
+    <SearchIcon size={28} />
     <SearchInput
       type="text"
-      placeholder="Search"
+      placeholder="Search keyword or case title"
       aria-label="Search"
       onChange={e => refine(e.target.value)}
       {...rest}

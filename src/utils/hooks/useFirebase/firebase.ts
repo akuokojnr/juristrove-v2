@@ -13,7 +13,7 @@ const firebaseConfig = {
   measurementId: process.env.GATSBY_MEASUREMENT_ID,
 };
 
-let firebaseInstance: any = null;
+let firebaseInstance: firebase.app.App | null = null;
 
 export default function getFirebase() {
   if (typeof window !== "undefined") {
