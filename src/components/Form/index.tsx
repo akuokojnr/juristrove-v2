@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { navigate } from "gatsby";
+import { navigate } from "@reach/router";
 
 import Input from "./input/index";
 import Button from "components/Button";
@@ -24,13 +24,17 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
 
   const signIn = async () => {
     try {
-      const user = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      await firebase?.auth().signInWithEmailAndPassword(email, password);
 
-      if (typeof window !== `undefined`) {
-        window.localStorage.setItem("User", JSON.stringify(user));
-        navigate("/app", { replace: true });
+      const currentUser = firebase?.auth().currentUser;
+
+      if (typeof window !== `undefined` && currentUser) {
+        window.localStorage.setItem("user", JSON.stringify(currentUser));
+        window.localStorage.setItem(
+          "authType",
+          JSON.stringify({ isLogin: true })
+        );
+        navigate("/app");
       }
     } catch (err) {
       setError(err.message);
@@ -39,23 +43,32 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
 
   const signUp = async () => {
     try {
-      const user = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      await firebase?.auth().createUserWithEmailAndPassword(email, password);
 
-      await firebase
-        .firestore()
-        .collection("users")
-        .doc(email)
-        .set({
-          username,
-          savedCases: [],
-          recentlyView: [],
+      const currentUser = firebase?.auth().currentUser;
+
+      if (currentUser) {
+        currentUser.updateProfile({
+          displayName: username,
         });
 
+        await firebase
+          ?.firestore()
+          .collection(`users`)
+          .doc(`${currentUser.uid}`)
+          .set({
+            username: username,
+            email: email,
+          });
+      }
+
       if (typeof window !== `undefined`) {
-        window.localStorage.setItem("User", JSON.stringify(user));
-        navigate("/app", { replace: true });
+        window.localStorage.setItem("User", JSON.stringify(currentUser));
+        window.localStorage.setItem(
+          "authType",
+          JSON.stringify({ isLogin: false })
+        );
+        navigate("/app");
       }
     } catch (err) {
       setError(err.message);
@@ -64,7 +77,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
 
   const resetPassword = async () => {
     try {
-      await firebase.auth().sendPasswordResetEmail(email);
+      await firebase?.auth().sendPasswordResetEmail(email);
       setStatus(true);
     } catch (err) {
       setError(err.message);
@@ -72,7 +85,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     switch (type) {

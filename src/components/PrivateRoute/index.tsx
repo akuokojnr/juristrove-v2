@@ -1,5 +1,5 @@
 import React from "react";
-import { navigate } from "gatsby";
+import { navigate } from "@reach/router";
 
 interface PrivateRouteProps {
   component: React.ReactNode;
@@ -21,7 +21,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
     }
   }
 
-  return <Component {...rest} />;
+  return <Component {...rest} location={location} />;
 };
 
 export default PrivateRoute;

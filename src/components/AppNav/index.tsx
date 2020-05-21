@@ -47,8 +47,8 @@ const Sidebar = () => {
         await firebase.auth().signOut();
 
         if (typeof window !== `undefined`) {
-          window.localStorage.removeItem("User");
-          navigate("/", { replace: true });
+          window.localStorage.removeItem("user");
+          navigate("/");
         }
       } catch (error) {
         console.log(error);

@@ -12,9 +12,11 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ isApp, children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      {isApp ? <AppLayout children={children} /> : <main>{children}</main>}
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme}>
+        {isApp ? <AppLayout children={children} /> : <main>{children}</main>}
+      </ThemeProvider>
+    </>
   );
 };
 
