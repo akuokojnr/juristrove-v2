@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { QueryDocumentSnapshot } from "react-firebase-hooks";
 import uuid from "uuid/v4";
 
 import { Wrapper } from "components/common";
@@ -7,53 +8,55 @@ import List from "./lists";
 
 import { Categories, NoData } from "./styles";
 
-import { UserContext } from "utils/hooks/useFirebase";
+interface FavoritesProps {
+  data:
+    | QueryDocumentSnapshot<{
+        category: string;
+        description: string;
+        savedAt: string;
+      }>
+    | undefined;
+}
 
-const Favorites: React.FC = () => {
+const Favorites: React.FC<FavoritesProps> = ({ data }) => {
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const { user } = useContext(UserContext);
-  const categories = user.savedCases;
-  let data =
-    categories && categories.filter(i => i.category === activeCategory);
+  // let data =
+  //   categories && categories.filter(i => i.category === activeCategory);
 
   const handleClick = category => {
     setActiveCategory(category);
     console.log(categories);
   };
 
+  if (!data || !data.length) {
+    return (
+      <NoData>
+        <p>You have not saved any case yet.</p>
+      </NoData>
+    );
+  }
+
   return (
     <Wrapper>
-      {!activeCategory && (
-        <>
-          {categories && categories.length > 0 ? (
-            <Categories>
-              <>
-                {categories.map(({ category, description, savedAt }) => (
-                  <Category
-                    key={uuid()}
-                    name={category}
-                    description={description}
-                    date={savedAt}
-                    handleClick={() => handleClick(category)}
-                  />
-                ))}
-              </>
-            </Categories>
-          ) : (
-            <NoData>
-              <p>You have not saved any case yet.</p>
-            </NoData>
-          )}
-        </>
-      )}
-      {activeCategory && (
+      <Categories>
+        {data.map(({ category, description, savedAt }) => (
+          <Category
+            key={uuid()}
+            name={category}
+            description={description}
+            date={savedAt}
+            handleClick={() => handleClick(category)}
+          />
+        ))}
+      </Categories>
+      {/* {activeCategory && (
         <List
           title={activeCategory}
           data={data}
           handleBack={setActiveCategory}
         />
-      )}
+      )} */}
     </Wrapper>
   );
 };

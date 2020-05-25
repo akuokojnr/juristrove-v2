@@ -3,7 +3,7 @@ import BgImg from "gatsby-background-image";
 
 import media from "utils/media";
 
-const Wrap = styled.section`
+export const Wrap = styled.section`
   height: 100vh;
 
   div:first-child {
@@ -31,7 +31,7 @@ const Wrap = styled.section`
   `}
 `;
 
-const ImgWrap = styled(BgImg)`
+export const ImgWrap = styled(BgImg)`
   & p {
     margin: 2rem auto 0;
     max-width: 80%;
@@ -40,7 +40,7 @@ const ImgWrap = styled(BgImg)`
   }
 `;
 
-const ImgTitle = styled.h3`
+export const ImgTitle = styled.h3`
   max-width: 80%;
   font-size: 3rem;
   font-weight: 500;
@@ -48,7 +48,7 @@ const ImgTitle = styled.h3`
   margin: 0 auto;
 `;
 
-const FormWrap = styled.div`
+export const FormWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,17 +56,24 @@ const FormWrap = styled.div`
   margin: 0 1.5rem;
 `;
 
-const Title = styled.h3`
+export const Logo = styled.h2`
   font-family: "Cabin";
-  margin-bottom: 2.3rem;
+  color: ${({ theme }) => theme.colors.moderateCyan};
+  margin-bottom: 1rem;
 `;
 
-const Reset = styled.span`
+export const Title = styled.p`
+  font-family: "Cabin";
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+`;
+
+export const Reset = styled.span`
   font-size: 1rem;
   margin-top: -1rem;
 `;
 
-const Status = styled.div`
+export const Status = styled.div`
   max-width: 100%;
 
   ${media.md`
@@ -77,4 +84,3 @@ const Status = styled.div`
     font-size: 1.1rem;
   }
 `;
-export { Wrap, ImgWrap, ImgTitle, FormWrap, Title, Reset, Status };
