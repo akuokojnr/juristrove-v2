@@ -3,10 +3,11 @@ import { navigate } from "@reach/router";
 
 import Input from "./input/index";
 import Button from "components/Button";
+import Notification from "components/Notification";
 
 import useFirebase from "utils/hooks/useFirebase";
 
-import { FormWrap, StyledLink, Error } from "./styles";
+import { FormWrap, StyledLink } from "./styles";
 
 interface FormProps {
   type: "sign-in" | "sign-up" | "reset";
@@ -21,6 +22,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [hasError, setHasError] = React.useState(false);
 
   const signIn = async () => {
     try {
@@ -38,6 +40,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       }
     } catch (err) {
       setError(err.message);
+      setHasError(true);
     }
   };
 
@@ -72,6 +75,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       }
     } catch (err) {
       setError(err.message);
+      setHasError(true);
     }
   };
 
@@ -81,6 +85,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       setStatus(true);
     } catch (err) {
       setError(err.message);
+      setHasError(true);
       setStatus(false);
     }
   };
@@ -103,7 +108,11 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
 
   return (
     <>
-      <Error>{error}</Error>
+      <Notification
+        message={error}
+        active={hasError}
+        handleClose={setHasError}
+      />
       <FormWrap onSubmit={e => handleSubmit(e)}>
         {type === "sign-up" && (
           <Input

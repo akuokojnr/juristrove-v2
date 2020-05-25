@@ -64,7 +64,6 @@ export const Logo = styled.h2`
 
 export const Title = styled.p`
   font-family: "Cabin";
-  margin-bottom: 2rem;
   font-size: 1.3rem;
 `;
 
