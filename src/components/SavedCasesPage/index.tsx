@@ -4,6 +4,7 @@ import delve from "dlv";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
+import { Wrapper } from "components/common";
 import Favorites from "components/Favorites";
 
 import useFirebase from "utils/hooks/useFirebase";
@@ -27,7 +28,9 @@ const FavoritesPage: React.FC = () => {
     <>
       <SEO title="Saved cases" />
       <Layout isApp={true}>
-        <Favorites data={data} />
+        <Wrapper>
+          <Favorites data={data} />
+        </Wrapper>
       </Layout>
     </>
   );

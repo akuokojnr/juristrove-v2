@@ -5,7 +5,7 @@ import media from "utils/media";
 import { ReactComponent as Back } from "assets/icons/back.svg";
 import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
 
-const Categories = styled.section`
+export const Categories = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: 200px;
@@ -16,7 +16,7 @@ const Categories = styled.section`
   `}
 `;
 
-const Card = styled.div`
+export const Card = styled.div`
   background: ${({ theme }) => theme.colors.lightCyan};
   border-radius: 11px;
   padding: 2rem;
@@ -69,7 +69,7 @@ const Card = styled.div`
   }
 `;
 
-const Lists = styled.div`
+export const Lists = styled.div`
   margin: 2rem 0;
   padding: 1.4rem 1rem;
   border-radius: 11px;
@@ -132,7 +132,7 @@ const Lists = styled.div`
   }
 `;
 
-const BookmarkIcon = styled(Bookmark)`
+export const BookmarkIcon = styled(Bookmark)`
   margin-left: auto;
   width: 40px;
   height: 40px;
@@ -161,7 +161,7 @@ const BookmarkIcon = styled(Bookmark)`
   `}
 `;
 
-const Head = styled.div`
+export const Head = styled.div`
   display: flex;
   align-items: center;
   position: relative;
@@ -174,7 +174,7 @@ const Head = styled.div`
   }
 `;
 
-const BackIcon = styled(Back)`
+export const BackIcon = styled(Back)`
   width: 40px;
   margin-bottom: -0.5rem;
   transform: scale(0.65);
@@ -184,13 +184,20 @@ const BackIcon = styled(Back)`
   margin-top: 0.1rem;
 `;
 
-const NoData = styled.div`
+export const NoData = styled.div`
   p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.text};
     text-align: center;
-    text-transform: capitalize;
+    margin-top: 3rem;
   }
 `;
 
-export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head, NoData };
+export const ImgWrap = styled.div`
+  max-width: 500px;
+  margin: 100px auto 0;
+
+  img {
+    filter: grayscale(1);
+  }
+`;
