@@ -42,6 +42,8 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       setError(err.message);
       setHasError(true);
     }
+
+    reset();
   };
 
   const signUp = async (username: string, email: string, password: string) => {
@@ -77,6 +79,8 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       setError(err.message);
       setHasError(true);
     }
+
+    reset();
   };
 
   const resetPassword = async (email: string) => {
@@ -88,6 +92,8 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
       setHasError(true);
       setStatus(false);
     }
+
+    reset();
   };
 
   const onSubmit = (data: {
@@ -108,8 +114,6 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
         resetPassword(email);
         break;
     }
-
-    reset();
   };
 
   return (
