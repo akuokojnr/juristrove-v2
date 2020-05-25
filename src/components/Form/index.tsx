@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { navigate } from "@reach/router";
 
 import Input from "./input/index";
@@ -18,13 +19,12 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
   const firebase = useFirebase();
 
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const { register, handleSubmit, reset, errors } = useForm();
+
   const [error, setError] = useState<string>("");
   const [hasError, setHasError] = React.useState(false);
 
-  const signIn = async () => {
+  const signIn = async (email: string, password: string) => {
     try {
       await firebase?.auth().signInWithEmailAndPassword(email, password);
 
@@ -44,7 +44,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
     }
   };
 
-  const signUp = async () => {
+  const signUp = async (username: string, email: string, password: string) => {
     try {
       await firebase?.auth().createUserWithEmailAndPassword(email, password);
 
@@ -79,7 +79,7 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
     }
   };
 
-  const resetPassword = async () => {
+  const resetPassword = async (email: string) => {
     try {
       await firebase?.auth().sendPasswordResetEmail(email);
       setStatus(true);
@@ -90,20 +90,26 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: {
+    username: string;
+    email: string;
+    password: string;
+  }) => {
+    const { username, email, password } = data;
 
     switch (type) {
       case "sign-in":
-        signIn();
+        signIn(email, password);
         break;
       case "sign-up":
-        signUp();
+        signUp(username, email, password);
         break;
       case "reset":
-        resetPassword();
+        resetPassword(email);
         break;
     }
+
+    reset();
   };
 
   return (
@@ -113,31 +119,31 @@ const Form: React.FC<FormProps> = ({ type, buttonText, setStatus }) => {
         active={hasError}
         handleClose={setHasError}
       />
-      <FormWrap onSubmit={e => handleSubmit(e)}>
+      <FormWrap onSubmit={handleSubmit(onSubmit)}>
         {type === "sign-up" && (
           <Input
             type="text"
             label="Username"
             name="username"
-            value={username}
-            handleChange={setUsername}
+            ref={register({ required: true })}
+            error={errors?.firstname}
           />
         )}
         <Input
           type="email"
           label="Email"
           name="email"
-          value={email}
-          handleChange={setEmail}
+          ref={register({ required: true })}
+          error={errors?.email}
         />
         {type !== "reset" && (
           <Input
             type="password"
             label="Password"
             name="password"
-            value={password}
+            ref={register({ required: true })}
+            error={errors?.password}
             hasForgotPassword={type !== "sign-in"}
-            handleChange={setPassword}
           />
         )}
         <Button type="submit" buttonText={buttonText} />
