@@ -7,6 +7,8 @@ import SEO from "components/SEO";
 import { Wrapper } from "components/common";
 import Favorites from "components/Favorites";
 
+import { Loader } from "./styles";
+
 import useFirebase from "utils/hooks/useFirebase";
 
 const FavoritesPage: React.FC = () => {
@@ -28,9 +30,7 @@ const FavoritesPage: React.FC = () => {
     <>
       <SEO title="Saved cases" />
       <Layout isApp={true}>
-        <Wrapper>
-          <Favorites data={data} />
-        </Wrapper>
+        <Wrapper>{loading ? <Loader /> : <Favorites data={data} />}</Wrapper>
       </Layout>
     </>
   );
