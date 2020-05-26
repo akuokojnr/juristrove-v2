@@ -3,10 +3,10 @@ import { Link } from "gatsby";
 
 import media from "utils/media";
 
-import { ReactComponent as Menu } from "assets/icons/menu.svg";
-import { ReactComponent as Close } from "assets/icons/close.svg";
+import { Close } from "@styled-icons/evaicons-solid/Close";
+import { Menu2 as Menu } from "@styled-icons/evaicons-solid/Menu2";
 
-const Nav = styled.nav`
+export const Nav = styled.nav`
   width: 100%;
   height: 3rem;
   border-bottom: 2px solid ${({ theme }) => theme.colors.lightGray};
@@ -20,7 +20,7 @@ const Nav = styled.nav`
   `}
 `;
 
-const Wrap = styled.div`
+export const Wrap = styled.div`
   max-width: ${({ theme }) => theme.maxWidth};
   width: 100%;
   display: flex;
@@ -28,7 +28,7 @@ const Wrap = styled.div`
   z-index: 3;
 `;
 
-const NavItems = styled.ul`
+export const NavItems = styled.ul`
   display: none;
 
   ${media.md`
@@ -39,7 +39,7 @@ const NavItems = styled.ul`
   `}
 `;
 
-const MobileNav = styled.ul`
+export const MobileNav = styled.ul`
   display: none;
   position: absolute;
   top: 4rem;
@@ -81,7 +81,7 @@ const MobileNav = styled.ul`
   `}
 `;
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   list-style-type: none;
   margin-left: 2rem;
   position: relative;
@@ -114,7 +114,7 @@ const NavItem = styled.li`
   }
 `;
 
-const Brand = styled(Link)`
+export const Brand = styled(Link)`
   font-size: 1.4rem;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
@@ -126,48 +126,36 @@ const Brand = styled(Link)`
   `}
 `;
 
-const MenuIcon = styled(Menu)`
-  height: 45px;
-  width: 60px;
-  margin-left: -1.4rem;
-  transform: scale(0.8);
+export const MenuIcon = styled(Menu)`
+  margin-left: -1rem;
 
   ${media.md`
     display: none;
   `}
 `;
 
-const CloseIcon = styled(Close)`
-  height: 45px;
-  width: 60px;
-  margin-left: -1.5rem;
-  margin-bottom: -0.5rem;
-  transform: scale(0.8);
+export const CloseIcon = styled(Close)`
+  margin-left: -1rem;
 
   ${media.md`
     display: none;
   `}
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   ${({ theme }) => theme.buttonPrimary};
   font-weight: 500;
   padding: 0.25rem 1rem;
+  transition: all 340ms ease-in-out;
 
   ${media.md`
     margin-left: 0;
     padding: 0.28rem 1.2rem;
   `}
-`;
 
-export {
-  Wrap,
-  Nav,
-  NavItems,
-  MobileNav,
-  NavItem,
-  Brand,
-  Button,
-  MenuIcon,
-  CloseIcon,
-};
+  &:hover {
+    background: transparent;
+    border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
+    color: ${({ theme }) => theme.colors.moderateCyan};
+  }
+`;

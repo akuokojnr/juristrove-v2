@@ -5,41 +5,27 @@ import media from "utils/media";
 import { ReactComponent as Back } from "assets/icons/back.svg";
 import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
 
-const Categories = styled.section`
+export const Categories = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: 200px;
+  grid-auto-rows: 150px;
   grid-gap: 2rem;
 
   ${media.sm`
-    grid-auto-rows: 250px;
+    grid-auto-rows: 200px;
   `}
 `;
 
-const Card = styled.div`
-  background: ${({ theme }) => theme.colors.lightCyan};
+export const Card = styled.div`
+  border: 2px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: 11px;
   padding: 2rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: all ease 240ms;
+  transition: all ease 340ms;
   position: relative;
   overflow: hidden;
-
-  :before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-
-    background: url("/blub.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-  }
 
   p {
     color: ${({ theme }) => theme.colors.text};
@@ -66,10 +52,15 @@ const Card = styled.div`
 
   :hover {
     box-shadow: ${({ theme }) => theme.boxShadow3};
+    border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
+
+    p {
+      color: ${({ theme }) => theme.colors.moderateCyan};
+    }
   }
 `;
 
-const Lists = styled.div`
+export const Lists = styled.div`
   margin: 2rem 0;
   padding: 1.4rem 1rem;
   border-radius: 11px;
@@ -132,7 +123,7 @@ const Lists = styled.div`
   }
 `;
 
-const BookmarkIcon = styled(Bookmark)`
+export const BookmarkIcon = styled(Bookmark)`
   margin-left: auto;
   width: 40px;
   height: 40px;
@@ -161,7 +152,7 @@ const BookmarkIcon = styled(Bookmark)`
   `}
 `;
 
-const Head = styled.div`
+export const Head = styled.div`
   display: flex;
   align-items: center;
   position: relative;
@@ -174,7 +165,7 @@ const Head = styled.div`
   }
 `;
 
-const BackIcon = styled(Back)`
+export const BackIcon = styled(Back)`
   width: 40px;
   margin-bottom: -0.5rem;
   transform: scale(0.65);
@@ -184,13 +175,20 @@ const BackIcon = styled(Back)`
   margin-top: 0.1rem;
 `;
 
-const NoData = styled.div`
+export const NoData = styled.div`
   p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.text};
     text-align: center;
-    text-transform: capitalize;
+    margin-top: 3rem;
   }
 `;
 
-export { Categories, Card, Lists, BookmarkIcon, BackIcon, Head, NoData };
+export const ImgWrap = styled.div`
+  max-width: 500px;
+  margin: 100px auto 0;
+
+  img {
+    filter: grayscale(1);
+  }
+`;

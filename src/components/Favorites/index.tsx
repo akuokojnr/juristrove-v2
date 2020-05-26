@@ -1,60 +1,84 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { QueryDocumentSnapshot } from "react-firebase-hooks";
 import uuid from "uuid/v4";
+import ReactTimeAgo from "react-time-ago";
+import JavascriptTimeAgo from "javascript-time-ago";
 
 import { Wrapper } from "components/common";
-import Category from "./category";
 import List from "./lists";
 
-import { Categories, NoData } from "./styles";
+import illustration from "assets/images/friendly-ones.png";
 
-import { UserContext } from "utils/hooks/useFirebase";
+import en from "javascript-time-ago/locale/en";
+JavascriptTimeAgo.locale(en);
 
-const Favorites: React.FC = () => {
+import { Categories, NoData, ImgWrap, Card } from "./styles";
+
+interface FavoritesProps {
+  data:
+    | QueryDocumentSnapshot<{
+        category: string;
+        description: string;
+        savedAt: string;
+      }>
+    | undefined;
+}
+
+const Favorites: React.FC<FavoritesProps> = ({ data }) => {
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const { user } = useContext(UserContext);
-  const categories = user.savedCases;
-  let data =
-    categories && categories.filter(i => i.category === activeCategory);
+  // let data =
+  //   categories && categories.filter(i => i.category === activeCategory);
+
+  // TODO: filter categories and category items
 
   const handleClick = category => {
     setActiveCategory(category);
-    console.log(categories);
+    // console.log(category);
   };
 
+  if (!data || !data.length) {
+    return (
+      <NoData>
+        <ImgWrap>
+          <img src={illustration} alt="" />
+        </ImgWrap>
+        <p>You have not saved any case yet.</p>
+      </NoData>
+    );
+  }
+
   return (
-    <Wrapper>
-      {!activeCategory && (
-        <>
-          {categories && categories.length > 0 ? (
-            <Categories>
-              <>
-                {categories.map(({ category, description, savedAt }) => (
-                  <Category
-                    key={uuid()}
-                    name={category}
-                    description={description}
-                    date={savedAt}
-                    handleClick={() => handleClick(category)}
-                  />
-                ))}
-              </>
-            </Categories>
-          ) : (
-            <NoData>
-              <p>You have not saved any case yet.</p>
-            </NoData>
-          )}
-        </>
-      )}
-      {activeCategory && (
+    <>
+      <Categories>
+        {data.map(
+          ({
+            category,
+            description,
+            savedAt,
+          }: {
+            category: string;
+            description: string;
+            savedAt: string;
+          }) => (
+            <Card key={uuid()} onClick={() => handleClick(category)}>
+              <p>{category}</p>
+              <p>{description}</p>
+              <p>
+                Updated <ReactTimeAgo date={savedAt} />
+              </p>
+            </Card>
+          )
+        )}
+      </Categories>
+      {/* {activeCategory && (
         <List
           title={activeCategory}
           data={data}
           handleBack={setActiveCategory}
         />
-      )}
-    </Wrapper>
+      )} */}
+    </>
   );
 };
 

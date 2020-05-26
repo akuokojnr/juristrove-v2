@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 import media from "utils/media";
 
-const Label = styled.label`
+export const Label = styled.label`
   display: flex;
   flex-direction: column;
   max-width: 100%;
@@ -11,7 +11,7 @@ const Label = styled.label`
 
   ${media.md`
   	max-width: 400px;
-	  margin: 0 0 2rem;
+	  margin: 0 0 1.5rem;
   `}
 
   span {
@@ -30,7 +30,7 @@ const Label = styled.label`
   }
 `;
 
-const Input = styled.input`
+export const Input = styled.input`
   border: none;
   border-radius: 5px;
   box-shadow: ${({ theme }) => theme.boxShadow};
@@ -44,8 +44,12 @@ const Input = styled.input`
   }
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colors.moderateCyan};
 `;
 
-export { Input, Label, StyledLink };
+export const Error = styled.p`
+  color: ${({ theme }) => theme.colors.error};
+  font-size: 0.8rem;
+  margin-top: 0.6rem;
+`;

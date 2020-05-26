@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useCollection } from "react-firebase-hooks/firestore";
+import delve from "dlv";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
@@ -7,40 +9,46 @@ import { Wrapper } from "components/common";
 
 import useFirebase from "utils/hooks/useFirebase";
 
+import { Blurb, Loader, ActivityWrap } from "./styles";
+
 const Dashboard: React.FC = () => {
-  const [user, setUser] = useState({});
   const firebase = useFirebase();
 
-  const data = user.recentlyView;
+  let user;
+  let authType;
 
-  useEffect(() => {
-    if (!firebase) return;
+  if (typeof window !== `undefined`) {
+    user = JSON.parse(window.localStorage.getItem("user"));
+    authType = JSON.parse(window.localStorage.getItem("authType"));
+  }
 
-    let authUser = typeof window !== `undefined` && JSON.parse(window.localStorage.getItem("User"));
+  const username = delve(user, "displayName") && user.displayName;
+  const userId = delve(user, "uid") && user.uid;
+  const isLogin = delve(authType, "isLogin") && authType.isLogin;
 
-    const getUserData = async () => {
-      try {
-        let ref = await firebase
-          .firestore()
-          .collection("users")
-          .doc(authUser.user.email);
+  const [value, loading, error] = useCollection(
+    firebase?.firestore().collection(`users/${userId}/recentlyViewed`)
+  );
 
-        let doc = await ref.get();
-        setUser(doc.data());
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getUserData();
-  }, [firebase]);
+  const data = value?.docs;
 
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Dashboard" />
       <Layout isApp={true}>
         <Wrapper>
-          <Welcome username={user.username} data={data} />
+          <Blurb>
+            <h3>Hello {username}!</h3>
+            {isLogin ? (
+              <p>Welcome back to Juristrove.</p>
+            ) : (
+              <p>Welcome to Juristrove</p>
+            )}
+          </Blurb>
+          <ActivityWrap>
+            <p>Recent</p>
+            {loading ? <Loader /> : <Welcome data={data} />}
+          </ActivityWrap>
         </Wrapper>
       </Layout>
     </>

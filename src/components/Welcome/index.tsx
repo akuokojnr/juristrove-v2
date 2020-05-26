@@ -1,41 +1,37 @@
 import React from "react";
+import { QueryDocumentSnapshot } from "react-firebase-hooks";
+
 import uuid from "uuid/v4";
 
-import { Blurb, ActivityWrap, NoData } from "./styles";
+import { Content, NoData } from "./styles";
 
 interface WelcomeProps {
-  username: string;
-  data: Array<{
-    title: string;
-    url: string;
-    createdAt: string;
-  }>;
+  data:
+    | QueryDocumentSnapshot<{
+        title: string;
+        url: string;
+        createdAt: string;
+      }>
+    | undefined;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({ username, data }) => (
-  <>
-    <Blurb>
-      <h3>Hello {username}!</h3>
-      <p>Welcome back to Juristrove.</p>
-    </Blurb>
-    <ActivityWrap>
-      <p>Recent</p>
-      {data && data.length > 0 ? (
-        <ul>
-          {data.map(({ title, url, createdAt }) => (
-            <li key={uuid()}>
-              <a href={url}>
-                {title}
-                <span>{createdAt}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <NoData>Your recently read cases will appear here.</NoData>
-      )}
-    </ActivityWrap>
-  </>
-);
+const Welcome: React.FC<WelcomeProps> = ({ data }) => {
+  if (!data || !data.length) {
+    return <NoData>Your recently read cases will appear here.</NoData>;
+  }
+
+  return (
+    <Content>
+      {data.map(({ title, url, createdAt }) => (
+        <li key={uuid()}>
+          <a href={url}>
+            {title}
+            <span>{createdAt}</span>
+          </a>
+        </li>
+      ))}
+    </Content>
+  );
+};
 
 export default Welcome;

@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
-// import { Document, Page } from "react-pdf/dist/entry.webpack";
-
-// import { PageWrap } from "./styles";
 
 interface ReaderProps {
   caseUrl: string;
   title: string;
 }
 
-const Reader2: React.FC<ReaderProps> = ({ caseUrl, title }) => {
+const Reader: React.FC<ReaderProps> = ({ caseUrl, title }) => {
   const viewerConfig = {
     showAnnotationTools: true,
     enableFormFilling: false,
@@ -26,14 +23,17 @@ const Reader2: React.FC<ReaderProps> = ({ caseUrl, title }) => {
       clientId: process.env.GATSBY_ADOBE_VIEW_CLIENT_ID,
       divId: "adobe-dc-view",
     });
-    adobeDCView.previewFile({
-      content: {
-        location: {
-          url: caseUrl,
+    adobeDCView.previewFile(
+      {
+        content: {
+          location: {
+            url: caseUrl,
+          },
         },
+        metaData: { fileName: title },
       },
-      metaData: { fileName: title },
-    }, viewerConfig);
+      viewerConfig
+    );
   };
 
   useEffect(() => {
@@ -51,4 +51,4 @@ const Reader2: React.FC<ReaderProps> = ({ caseUrl, title }) => {
   );
 };
 
-export default Reader2;
+export default Reader;

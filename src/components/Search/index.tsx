@@ -2,6 +2,7 @@ import React, { createRef } from "react";
 import { InstantSearch, Hits } from "react-instantsearch-dom";
 import algoliasearch from "algoliasearch/lite";
 
+import SEO from "components/SEO";
 import { Wrapper } from "components/common";
 import SearchInput from "./search-input";
 import Hit from "./hit";
@@ -12,24 +13,27 @@ const Search: React.FC = () => {
   const ref = createRef();
 
   const searchClient = algoliasearch(
-    process.env.GATSBY_ALGOLIA_APP_ID,
-    process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    `${process.env.GATSBY_ALGOLIA_APP_ID}`,
+    `${process.env.GATSBY_ALGOLIA_SEARCH_KEY}`
   );
 
   return (
-    <Wrapper>
-      <InstantSearch
-        searchClient={searchClient}
-        indexName="dev_CASES"
-        root={{ Root, props: { ref } }}
-      >
-        <SearchInput />
+    <>
+      <SEO title="Search" />
+      <Wrapper>
+        <InstantSearch
+          searchClient={searchClient}
+          indexName="dev_CASES"
+          root={{ Root, props: { ref } }}
+        >
+          <SearchInput />
 
-        <HitsWrapper>
-          <Hits hitComponent={Hit} />
-        </HitsWrapper>
-      </InstantSearch>
-    </Wrapper>
+          <HitsWrapper>
+            <Hits hitComponent={Hit} />
+          </HitsWrapper>
+        </InstantSearch>
+      </Wrapper>
+    </>
   );
 };
 

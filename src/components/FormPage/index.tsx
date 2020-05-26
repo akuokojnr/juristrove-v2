@@ -8,6 +8,7 @@ import {
   ImgWrap,
   ImgTitle,
   FormWrap,
+  Logo,
   Title,
   Reset,
   Status,
@@ -48,6 +49,7 @@ const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
         </div>
       </ImgWrap>
       <FormWrap>
+        <Logo>Juristrove</Logo>
         <Title>{title}</Title>
         {resetLinkStatus ? (
           <Status>
