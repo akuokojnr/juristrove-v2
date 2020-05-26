@@ -1,5 +1,6 @@
 import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
+import delve from "dlv";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
@@ -21,9 +22,9 @@ const Dashboard: React.FC = () => {
     authType = JSON.parse(window.localStorage.getItem("authType"));
   }
 
-  const username = user.displayName;
-  const userId = user.uid;
-  const isLogin = authType.isLogin;
+  const username = delve(user, "displayName") && user.displayName;
+  const userId = delve(user, "uid") && user.uid;
+  const isLogin = delve(authType, "isLogin") && authType.isLogin;
 
   const [value, loading, error] = useCollection(
     firebase?.firestore().collection(`users/${userId}/recentlyViewed`)

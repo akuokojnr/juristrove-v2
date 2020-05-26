@@ -20,7 +20,7 @@ const FavoritesPage: React.FC = () => {
     user = JSON.parse(window.localStorage.getItem("user"));
   }
 
-  const userId = user.uid;
+  const userId = delve(user, "uid") && user.uid;
 
   const [value, loading, error] = useCollection(
     firebase?.firestore().collection(`users/${userId}/savedCases`)
