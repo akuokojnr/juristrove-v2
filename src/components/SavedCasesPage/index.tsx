@@ -14,9 +14,11 @@ import useFirebase from "utils/hooks/useFirebase";
 const FavoritesPage: React.FC = () => {
   const firebase = useFirebase();
 
-  const user =
-    delve(window, "localStorage") &&
-    JSON.parse(window.localStorage.getItem("user"));
+  let user;
+
+  if (typeof window !== `undefined`) {
+    user = JSON.parse(window.localStorage.getItem("user"));
+  }
 
   const userId = user.uid;
 
