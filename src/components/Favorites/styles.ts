@@ -8,38 +8,24 @@ import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
 export const Categories = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: 200px;
+  grid-auto-rows: 150px;
   grid-gap: 2rem;
 
   ${media.sm`
-    grid-auto-rows: 250px;
+    grid-auto-rows: 200px;
   `}
 `;
 
 export const Card = styled.div`
-  background: ${({ theme }) => theme.colors.lightCyan};
+  border: 2px solid ${({ theme }) => theme.colors.lightGray};
   border-radius: 11px;
   padding: 2rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: all ease 240ms;
+  transition: all ease 340ms;
   position: relative;
   overflow: hidden;
-
-  :before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 1;
-
-    background: url("/blub.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-  }
 
   p {
     color: ${({ theme }) => theme.colors.text};
@@ -66,6 +52,11 @@ export const Card = styled.div`
 
   :hover {
     box-shadow: ${({ theme }) => theme.boxShadow3};
+    border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
+
+    p {
+      color: ${({ theme }) => theme.colors.moderateCyan};
+    }
   }
 `;
 

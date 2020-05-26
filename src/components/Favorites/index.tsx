@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { QueryDocumentSnapshot } from "react-firebase-hooks";
 import uuid from "uuid/v4";
+import ReactTimeAgo from "react-time-ago";
+import JavascriptTimeAgo from "javascript-time-ago";
 
 import { Wrapper } from "components/common";
-import Category from "./category";
 import List from "./lists";
 
 import illustration from "assets/images/friendly-ones.png";
 
-import { Categories, NoData, ImgWrap } from "./styles";
+import en from "javascript-time-ago/locale/en";
+JavascriptTimeAgo.locale(en);
+
+import { Categories, NoData, ImgWrap, Card } from "./styles";
 
 interface FavoritesProps {
   data:
@@ -26,9 +30,11 @@ const Favorites: React.FC<FavoritesProps> = ({ data }) => {
   // let data =
   //   categories && categories.filter(i => i.category === activeCategory);
 
+  // TODO: filter categories and category items
+
   const handleClick = category => {
     setActiveCategory(category);
-    console.log(categories);
+    // console.log(category);
   };
 
   if (!data || !data.length) {
@@ -43,17 +49,27 @@ const Favorites: React.FC<FavoritesProps> = ({ data }) => {
   }
 
   return (
-    <Wrapper>
+    <>
       <Categories>
-        {data.map(({ category, description, savedAt }) => (
-          <Category
-            key={uuid()}
-            name={category}
-            description={description}
-            date={savedAt}
-            handleClick={() => handleClick(category)}
-          />
-        ))}
+        {data.map(
+          ({
+            category,
+            description,
+            savedAt,
+          }: {
+            category: string;
+            description: string;
+            savedAt: string;
+          }) => (
+            <Card key={uuid()} onClick={() => handleClick(category)}>
+              <p>{category}</p>
+              <p>{description}</p>
+              <p>
+                Updated <ReactTimeAgo date={savedAt} />
+              </p>
+            </Card>
+          )
+        )}
       </Categories>
       {/* {activeCategory && (
         <List
@@ -62,7 +78,7 @@ const Favorites: React.FC<FavoritesProps> = ({ data }) => {
           handleBack={setActiveCategory}
         />
       )} */}
-    </Wrapper>
+    </>
   );
 };
 
