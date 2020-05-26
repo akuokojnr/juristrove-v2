@@ -1,6 +1,5 @@
 import React from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import delve from "dlv";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
@@ -13,12 +12,14 @@ import { Blurb, Loader, ActivityWrap } from "./styles";
 
 const Dashboard: React.FC = () => {
   const firebase = useFirebase();
-  const user =
-    delve(window, "localStorage") &&
-    JSON.parse(window.localStorage.getItem("user"));
-  const authType =
-    delve(window, "localStorage") &&
-    JSON.parse(window.localStorage.getItem("authType"));
+
+  let user;
+  let authType;
+
+  if (typeof window !== `undefined`) {
+    user = JSON.parse(window.localStorage.getItem("user"));
+    authType = JSON.parse(window.localStorage.getItem("authType"));
+  }
 
   const username = user.displayName;
   const userId = user.uid;
