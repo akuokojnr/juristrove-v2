@@ -36,6 +36,7 @@ const LINKS = [
 interface AppNavProps {
   hasSaveButton?: boolean;
   caseMeta?: {
+    id: string;
     title: string;
     slug: string;
   };

@@ -36,6 +36,7 @@ export default CaseTemplate;
 export const query = graphql`
   query($id: String!) {
     case: datoCmsCase(id: { eq: $id }) {
+      originalId
       title
       url
       slug
