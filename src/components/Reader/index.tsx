@@ -15,7 +15,7 @@ const Reader: React.FC<ReaderProps> = ({ caseUrl, title }) => {
     showPrintPDF: true,
     showPageControls: true,
     dockPageControls: false,
-    defaultViewMode: "",
+    embedMode: "IN_LINE",
   };
 
   const initializeViewer = () => {
