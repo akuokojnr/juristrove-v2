@@ -26,6 +26,16 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
   z-index: 3;
+
+  button + button {
+    margin-left: 1rem;
+    margin-right: -0.8rem;
+
+    ${media.lg`
+      margin-left: 1.5rem;
+      margin-right: 0;
+    `};
+  }
 `;
 
 export const NavItems = styled.ul`
@@ -157,5 +167,33 @@ export const Button = styled.button`
     background: transparent;
     border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
     color: ${({ theme }) => theme.colors.moderateCyan};
+  }
+`;
+
+export const SaveButton = styled(Button)`
+  padding: 0;
+  border: none;
+
+  ${media.sm`
+    border: 2px solid ${({ theme }) => theme.colors.limeGray};
+    padding: 0.25rem 1rem;
+  `};
+
+  ${media.md`
+    padding: 0.28rem 1.2rem;
+  `}
+
+  span {
+    display: none;
+
+    ${media.sm`
+      display: inline;
+    `};
+  }
+
+  svg {
+    ${media.sm`
+      display: none;
+    `};
   }
 `;

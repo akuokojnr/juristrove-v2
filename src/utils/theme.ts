@@ -13,6 +13,7 @@ export default {
     error: "#f14668",
     white: "#FFF",
     black: "#000",
+    readerBg: "#F6F9FA",
   },
 
   button: `

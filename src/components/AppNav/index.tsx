@@ -4,6 +4,8 @@ import uuid from "uuid/v4";
 
 import useFirebase from "utils/hooks/useFirebase";
 
+import { BookmarkStar as BookmarkIcon } from "@styled-icons/boxicons-solid/BookmarkStar";
+
 import {
   Wrap,
   Nav,
@@ -12,6 +14,7 @@ import {
   NavItem,
   Brand,
   Button,
+  SaveButton,
   MenuIcon,
   CloseIcon,
 } from "./styles";
@@ -34,7 +37,11 @@ const LINKS = [
   },
 ];
 
-const Sidebar = () => {
+interface AppNavProps {
+  hasSaveButton?: boolean;
+}
+
+const AppNav: React.FC<AppNavProps> = ({ hasSaveButton }) => {
   const firebase = useFirebase();
 
   const [isOpen, toggleMenu] = useState(false);
@@ -86,11 +93,16 @@ const Sidebar = () => {
             </NavItem>
           ))}
         </MobileNav>
-
+        {hasSaveButton && (
+          <SaveButton>
+            <BookmarkIcon size={24} />
+            <span>Save case</span>
+          </SaveButton>
+        )}
         <Button onClick={signOut}>Log out</Button>
       </Wrap>
     </Nav>
   );
 };
 
-export default Sidebar;
+export default AppNav;

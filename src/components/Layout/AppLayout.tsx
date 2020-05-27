@@ -4,13 +4,14 @@ import AppNav from "components/AppNav";
 import AppFooter from "components/Footer";
 
 interface AppLayoutProps {
+  hasSaveButton?: boolean;
   children: React.ReactNode;
 }
 
-const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+const AppLayout: React.FC<AppLayoutProps> = ({ hasSaveButton, children }) => {
   return (
     <main>
-      <AppNav />
+      <AppNav hasSaveButton={hasSaveButton} />
       {children}
       <AppFooter />
     </main>

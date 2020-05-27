@@ -22,7 +22,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ data }) => {
   return (
     <>
       <SEO title={title} />
-      <Layout isApp={true}>
+      <Layout isApp={true} hasSaveButton={true}>
         <DocWrap>
           <Reader caseUrl={url} title={title} />
         </DocWrap>
