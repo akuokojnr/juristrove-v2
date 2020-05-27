@@ -12,7 +12,7 @@ const DocWrap = styled.section`
   `};
 
   #adobe-dc-view {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
   }
 `;
