@@ -39,14 +39,54 @@ const LINKS = [
 
 interface AppNavProps {
   hasSaveButton?: boolean;
+  caseMeta?: {
+    title: string;
+    url: string;
+  };
 }
 
-const AppNav: React.FC<AppNavProps> = ({ hasSaveButton }) => {
-  const firebase = useFirebase();
-
+const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
   const [isOpen, toggleMenu] = useState(false);
+  const [message, setMessage] = useState<{
+    type: "error" | "success";
+    message: string;
+  }>();
 
   const handleClick = () => toggleMenu(!isOpen);
+
+  const firebase = useFirebase();
+
+  let user;
+
+  if (typeof window !== `undefined`) {
+    user = JSON.parse(window.localStorage.getItem("user"));
+  }
+
+  const userId = delve(user, "uid") && user.uid;
+
+  const saveCase = async () => {
+    const { title, url } = caseMeta;
+
+    let file = {
+      title: title,
+      path: url,
+      timestamp: Date.now(),
+    };
+
+    try {
+      await firebase
+        ?.firestore()
+        .collection(`users/${userId}/savedCases`)
+        .add(file);
+
+      setMessage({
+        type: "success",
+        message: "Your case has been saved successfully.",
+      });
+    } catch (err) {
+      setMessage({ type: "error", message: err.message });
+    }
+  };
 
   const signOut = async () => {
     if (firebase) {
@@ -94,7 +134,7 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton }) => {
           ))}
         </MobileNav>
         {hasSaveButton && (
-          <SaveButton>
+          <SaveButton onClick={saveCase}>
             <BookmarkIcon size={24} />
             <span>Save case</span>
           </SaveButton>

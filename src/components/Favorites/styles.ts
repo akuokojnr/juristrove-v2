@@ -2,63 +2,7 @@ import styled from "styled-components";
 
 import media from "utils/media";
 
-import { ReactComponent as Back } from "assets/icons/back.svg";
 import { ReactComponent as Bookmark } from "assets/icons/bookmark.svg";
-
-export const Categories = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: 150px;
-  grid-gap: 2rem;
-
-  ${media.sm`
-    grid-auto-rows: 200px;
-  `}
-`;
-
-export const Card = styled.div`
-  border: 2px solid ${({ theme }) => theme.colors.lightGray};
-  border-radius: 11px;
-  padding: 2rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: all ease 340ms;
-  position: relative;
-  overflow: hidden;
-
-  p {
-    color: ${({ theme }) => theme.colors.text};
-    z-index: 2;
-    position: relative;
-
-    :first-child {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-    }
-
-    :nth-child(2) {
-      font-size: 0.9rem;
-      margin-bottom: auto;
-    }
-
-    :last-child {
-      font-size: 0.9rem;
-      color: rgba(13, 16, 24, 0.5);
-      font-weight: 700;
-    }
-  }
-
-  :hover {
-    box-shadow: ${({ theme }) => theme.boxShadow3};
-    border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
-
-    p {
-      color: ${({ theme }) => theme.colors.moderateCyan};
-    }
-  }
-`;
 
 export const Lists = styled.div`
   margin: 2rem 0;
@@ -150,29 +94,6 @@ export const BookmarkIcon = styled(Bookmark)`
 
     ${({ active }) => active && `opacity: 1;`}
   `}
-`;
-
-export const Head = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  p {
-    margin: 0 auto;
-    color: ${({ theme }) => theme.colors.text};
-    font-size: 1.6rem;
-    font-weight: 500;
-  }
-`;
-
-export const BackIcon = styled(Back)`
-  width: 40px;
-  margin-bottom: -0.5rem;
-  transform: scale(0.65);
-  cursor: pointer;
-  position: absolute;
-  left: 0;
-  margin-top: 0.1rem;
 `;
 
 export const NoData = styled.div`
