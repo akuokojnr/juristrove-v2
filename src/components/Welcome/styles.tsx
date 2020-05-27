@@ -10,9 +10,8 @@ const Content = styled.ul`
 
     a {
       color: ${({ theme }) => theme.colors.text};
-      font-size: 1.125rem;
+      font-size: 1rem;
       padding: 0.8rem;
-      margin-bottom: 0.5rem;
       display: flex;
       flex-direction: column;
     }
@@ -20,6 +19,7 @@ const Content = styled.ul`
     span {
       font-size: 0.85rem;
       color: ${({ theme }) => theme.colors.smallText};
+      margin-top: 0.5rem;
     }
 
     :last-child {

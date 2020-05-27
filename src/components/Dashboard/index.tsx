@@ -27,7 +27,10 @@ const Dashboard: React.FC = () => {
   const isLogin = delve(authType, "isLogin") && authType.isLogin;
 
   const [value, loading, error] = useCollection(
-    firebase?.firestore().collection(`users/${userId}/savedCases`)
+    firebase
+      ?.firestore()
+      .collection(`users/${userId}/savedCases`)
+      .orderBy("timestamp", "desc")
   );
 
   const data = value?.docs;
