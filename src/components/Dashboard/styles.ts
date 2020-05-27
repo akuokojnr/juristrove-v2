@@ -66,7 +66,7 @@ export const ActivityWrap = styled.div`
     font-size: 1.35rem;
     color: ${({ theme }) => theme.colors.text};
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     ${media.md`
       font-size: 1.5rem;
