@@ -4,7 +4,7 @@ import delve from "dlv";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
-import Welcome from "components/Welcome";
+import SavedCases from "components/Saved";
 import { Wrapper } from "components/common";
 
 import useFirebase from "utils/hooks/useFirebase";
@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
           </Blurb>
           <ActivityWrap>
             <p>Saved cases</p>
-            {loading ? <Loader /> : <Welcome data={data} />}
+            {loading ? <Loader /> : <SavedCases data={data} />}
           </ActivityWrap>
         </Wrapper>
       </Layout>

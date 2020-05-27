@@ -12,7 +12,7 @@ import en from "javascript-time-ago/locale/en";
 
 JavascriptTimeAgo.locale(en);
 
-interface WelcomeProps {
+interface SavedCasesProps {
   data:
     | QueryDocumentSnapshot<{
         title: string;
@@ -22,7 +22,7 @@ interface WelcomeProps {
     | undefined;
 }
 
-const Welcome: React.FC<WelcomeProps> = ({ data }) => {
+const SavedCases: React.FC<SavedCasesProps> = ({ data }) => {
   if (!data || !data.length) {
     return (
       <NoData>
@@ -51,4 +51,4 @@ const Welcome: React.FC<WelcomeProps> = ({ data }) => {
   );
 };
 
-export default Welcome;
+export default SavedCases;
