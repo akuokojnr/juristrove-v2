@@ -26,7 +26,7 @@ const Favorites: React.FC<FavoritesProps> = ({ data }) => {
         <ImgWrap>
           <img src={illustration} alt="" />
         </ImgWrap>
-        <p>You have not saved any case yet.</p>
+        <p>When you saved cases, they'll show up here for easy access.</p>
       </NoData>
     );
   }
