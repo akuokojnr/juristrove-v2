@@ -4,7 +4,6 @@ import { Router } from "@reach/router";
 import PrivateRoute from "components/PrivateRoute";
 import Dashboard from "components/Dashboard";
 import SearchPage from "components/SearchPage";
-import SavedCasesPage from "components/SavedCasesPage";
 
 const App: React.FC = () => {
   return (
@@ -12,7 +11,6 @@ const App: React.FC = () => {
       <Router basepath="/app">
         <PrivateRoute path="/" component={Dashboard} />
         <PrivateRoute path="/search" component={SearchPage} />
-        <PrivateRoute path="/saved" component={SavedCasesPage} />
       </Router>
     </>
   );

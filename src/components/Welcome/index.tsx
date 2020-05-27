@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { QueryDocumentSnapshot } from "react-firebase-hooks";
 
 import uuid from "uuid/v4";
@@ -10,26 +11,34 @@ interface WelcomeProps {
     | QueryDocumentSnapshot<{
         title: string;
         url: string;
-        createdAt: string;
+        timestamp: number;
       }>
     | undefined;
 }
 
 const Welcome: React.FC<WelcomeProps> = ({ data }) => {
   if (!data || !data.length) {
-    return <NoData>Your recently read cases will appear here.</NoData>;
+    return (
+      <NoData>
+        When you save cases, they’ll show up here for easy access.
+      </NoData>
+    );
   }
 
   return (
     <Content>
-      {data.map(({ title, url, createdAt }) => (
-        <li key={uuid()}>
-          <a href={url}>
-            {title}
-            <span>{createdAt}</span>
-          </a>
-        </li>
-      ))}
+      {data.map(item => {
+        const { url, title, timestamp } = item.data();
+
+        return (
+          <li key={uuid()}>
+            <Link to={url}>
+              {title}
+              <span>{timestamp}</span>
+            </Link>
+          </li>
+        );
+      })}
     </Content>
   );
 };

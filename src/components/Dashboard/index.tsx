@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
   const isLogin = delve(authType, "isLogin") && authType.isLogin;
 
   const [value, loading, error] = useCollection(
-    firebase?.firestore().collection(`users/${userId}/recentlyViewed`)
+    firebase?.firestore().collection(`users/${userId}/savedCases`)
   );
 
   const data = value?.docs;
@@ -46,7 +46,7 @@ const Dashboard: React.FC = () => {
             )}
           </Blurb>
           <ActivityWrap>
-            <p>Recent</p>
+            <p>Saved cases</p>
             {loading ? <Loader /> : <Welcome data={data} />}
           </ActivityWrap>
         </Wrapper>

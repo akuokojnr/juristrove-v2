@@ -31,18 +31,13 @@ const LINKS = [
     name: "Search",
     url: "/app/search",
   },
-  {
-    id: uuid(),
-    name: "Saved cases",
-    url: "/app/saved",
-  },
 ];
 
 interface AppNavProps {
   hasSaveButton?: boolean;
   caseMeta?: {
     title: string;
-    url: string;
+    slug: string;
   };
 }
 
@@ -66,11 +61,11 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
   const userId = delve(user, "uid") && user.uid;
 
   const saveCase = async () => {
-    const { title, url } = caseMeta;
+    const { title, slug } = caseMeta;
 
     let file = {
-      title: title,
-      path: url,
+      title,
+      slug,
       timestamp: Date.now(),
     };
 

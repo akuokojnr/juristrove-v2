@@ -127,7 +127,7 @@ export const NavItem = styled.li`
 export const Brand = styled(Link)`
   font-size: 1.4rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.moderateCyan};
   margin: 0 auto;
 
   ${media.md`

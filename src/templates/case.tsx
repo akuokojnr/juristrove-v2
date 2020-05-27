@@ -38,6 +38,7 @@ export const query = graphql`
     case: datoCmsCase(id: { eq: $id }) {
       title
       url
+      slug
     }
   }
 `;
