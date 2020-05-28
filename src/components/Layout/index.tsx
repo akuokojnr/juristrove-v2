@@ -10,8 +10,10 @@ interface LayoutProps {
   isApp?: boolean;
   hasSaveButton?: boolean;
   caseMeta?: {
+    originalId: string;
     title: string;
-    url: string;
+    slug: string;
+    issaved: boolean;
   };
   children: React.ReactNode;
 }

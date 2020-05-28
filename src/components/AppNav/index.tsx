@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, navigate } from "gatsby";
+import { SiteClient } from "datocms-client";
 import uuid from "uuid/v4";
 import delve from "dlv";
 
@@ -36,9 +37,10 @@ const LINKS = [
 interface AppNavProps {
   hasSaveButton?: boolean;
   caseMeta?: {
-    id: string;
+    originalId: string;
     title: string;
     slug: string;
+    issaved: boolean;
   };
 }
 
@@ -52,6 +54,7 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
   const handleClick = () => toggleMenu(!isOpen);
 
   const firebase = useFirebase();
+  const datoClient = new SiteClient(process.env.GATSBY_DATO_ADMIN_KEY);
 
   let user;
 
@@ -62,11 +65,9 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
   const userId = delve(user, "uid") && user.uid;
 
   const saveCase = async () => {
-    const { title, slug } = caseMeta;
-
     let file = {
-      title,
-      slug,
+      title: caseMeta?.title,
+      slug: caseMeta?.slug,
       timestamp: Date.now(),
     };
 
@@ -75,6 +76,8 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
         ?.firestore()
         .collection(`users/${userId}/savedCases`)
         .add(file);
+
+      await datoClient.items.update(caseMeta?.originalId, { issaved: true });
 
       setMessage({
         type: "success",
@@ -131,9 +134,13 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
           ))}
         </MobileNav>
         {hasSaveButton && (
-          <SaveButton onClick={saveCase}>
+          <SaveButton onClick={saveCase} isSaved={caseMeta?.issaved}>
             <BookmarkIcon size={24} />
-            <span>Save case</span>
+            {caseMeta?.issaved ? (
+              <span>Case saved</span>
+            ) : (
+              <span>Save case</span>
+            )}
           </SaveButton>
         )}
         <Button onClick={signOut}>Log out</Button>

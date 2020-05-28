@@ -170,12 +170,14 @@ export const Button = styled.button`
   }
 `;
 
-export const SaveButton = styled(Button)`
+export const SaveButton = styled(Button)<{ isSaved?: boolean }>`
   padding: 0;
   border: none;
 
-  ${media.sm`
-    border: 2px solid ${({ theme }) => theme.colors.limeGray};
+  ${({ isSaved, theme }) => media.sm`
+    border: 2px solid ${
+      isSaved ? theme.colors.moderateCyan : theme.colors.limeGray
+    };
     padding: 0.25rem 1rem;
   `};
 
@@ -192,6 +194,8 @@ export const SaveButton = styled(Button)`
   }
 
   svg {
+    color: ${({ isSaved, theme }) => isSaved && theme.colors.moderateCyan};
+
     ${media.sm`
       display: none;
     `};

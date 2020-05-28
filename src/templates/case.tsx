@@ -10,8 +10,11 @@ import { DocWrap } from "./styles";
 interface CaseTemplateProps {
   data: {
     case: {
+      originalId: string;
       title: string;
       url: string;
+      slug: string;
+      issaved: boolean;
     };
   };
 }
@@ -40,6 +43,7 @@ export const query = graphql`
       title
       url
       slug
+      issaved
     }
   }
 `;
