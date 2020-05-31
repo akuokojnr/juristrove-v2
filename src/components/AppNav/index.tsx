@@ -55,10 +55,6 @@ const AppNav: React.FC<AppNavProps> = ({
   setSaveStatus,
 }) => {
   const [isOpen, toggleMenu] = useState<boolean>(false);
-  const [message, setMessage] = useState<{
-    type: "error" | "success";
-    text?: string;
-  }>();
 
   const handleClick = () => toggleMenu(!isOpen);
 
@@ -80,13 +76,8 @@ const AppNav: React.FC<AppNavProps> = ({
         .set(file);
 
       setSaveStatus(true);
-
-      setMessage({
-        type: "success",
-        message: "Your case has been saved successfully.",
-      });
     } catch (err) {
-      setMessage({ type: "error", message: err.message });
+      console.log(err.message);
     }
   };
 
@@ -99,13 +90,8 @@ const AppNav: React.FC<AppNavProps> = ({
         .delete();
 
       setSaveStatus(false);
-
-      setMessage({
-        type: "success",
-        message: "Your case has been removed successfully.",
-      });
     } catch (err) {
-      setMessage({ type: "error", message: err.message });
+      console.log(err.message);
     }
   };
 
