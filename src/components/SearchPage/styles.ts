@@ -94,8 +94,8 @@ export const HitWrap = styled.article`
     font-size: 0.95rem;
   }
 
-  ${media.sm`
-    border-right: 1.7px solid ${({ theme }) => theme.colors.limeGray};
+  ${({ theme }) => media.sm`
+    border-right: 1.7px solid ${theme.colors.limeGray};
 
     h4, p {
       max-width: 90%;
