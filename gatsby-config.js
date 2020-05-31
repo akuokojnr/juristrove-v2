@@ -48,14 +48,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
-    {
-      resolve: `gatsby-source-datocms`,
-      options: {
-        apiToken: process.env.DATO_API_TOKEN,
-        previewMode: false,
-        disableLiveReload: false,
-      },
-    },
-    `gatsby-plugin-preact`
+    `gatsby-plugin-preact`,
   ],
 };
