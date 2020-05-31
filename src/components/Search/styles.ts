@@ -43,7 +43,11 @@ export const SearchIcon = styled(Search)`
 `;
 
 export const HitsWrapper = styled.section`
-  margin-top: 6rem;
+  margin-top: 3rem;
+
+  ${media.md`
+    margin-top: 6rem;
+  `};
 
   .ais-Hits-list {
     margin-left: 0 !important;
