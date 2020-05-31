@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import media from "utils/media";
-
-const Footer = styled.footer`
+export const Footer = styled.footer`
   height: 4rem;
   border-top: 2px solid ${({ theme }) => theme.colors.lightGray};
   display: flex;
@@ -14,5 +12,3 @@ const Footer = styled.footer`
     font-size: 0.95rem;
   }
 `;
-
-export { Footer };

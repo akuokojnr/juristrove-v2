@@ -13,8 +13,9 @@ export const Blurb = styled.div`
 
   ${media.md`
     padding: 3rem;
-  `}
-    :before {
+  `};
+
+  :before {
     content: "";
     position: absolute;
     top: 0;
@@ -36,7 +37,7 @@ export const Blurb = styled.div`
 
     ${media.md`
       font-size: 2.3rem;
-    `}
+    `};
   }
 
   p {
@@ -47,7 +48,7 @@ export const Blurb = styled.div`
 
     ${media.md`
       font-size: 1.4rem;
-    `}
+    `};
   }
 `;
 
@@ -60,7 +61,7 @@ export const ActivityWrap = styled.div`
   ${media.md`
     margin-top: 6rem;
     padding: 3rem;
-  `}
+  `};
 
   p {
     font-size: 1.35rem;
@@ -70,7 +71,7 @@ export const ActivityWrap = styled.div`
 
     ${media.md`
       font-size: 1.5rem;
-    `}
+    `};
   }
 `;
 

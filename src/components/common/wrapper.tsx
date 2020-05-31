@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
   ${media.md`
     padding: 4rem;
-  `}
+  `};
 `;
 
 export default Wrapper;

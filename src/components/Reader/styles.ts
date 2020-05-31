@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import media from "utils/media";
 
-const PageWrap = styled.div`
+export const PageWrap = styled.div`
   margin-bottom: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 
@@ -19,5 +19,3 @@ const PageWrap = styled.div`
     }
   `}
 `;
-
-export { PageWrap };
