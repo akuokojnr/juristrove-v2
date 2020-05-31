@@ -26,7 +26,7 @@ export const Wrap = styled.section`
     }
 
     div:last-child {
-      margin-top: 0;
+      padding-top: 0;
     }
   `}
 `;
