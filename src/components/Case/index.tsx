@@ -27,10 +27,10 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
 
   const data = value?.data();
 
-  const getCaseUrl = async link => {
+  const getCaseUrl = async (title: string) => {
     const url = await firebase
       ?.storage()
-      .refFromURL(link)
+      .refFromURL(`cases/${title}`)
       .getDownloadURL();
     return url;
   };
@@ -44,7 +44,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
       setIsSaved(true);
     }
 
-    const url = getCaseUrl(data?.url);
+    const url = getCaseUrl(data?.title);
     setCaseUrl(url);
   });
 
