@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { useCountUp } from "react-countup";
 
 import Form from "components/Form";
 
@@ -22,6 +23,7 @@ interface FormPageProps {
 
 const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
   const [resetLinkStatus, setResetLinkStatus] = useState<boolean>(false);
+  const { countUp } = useCountUp({ end: 2000, suffix: "+", duration: 8 });
 
   const data = useStaticQuery(graphql`
     query {
@@ -45,7 +47,7 @@ const FormPage: React.FC<FormPageProps> = ({ type, title, buttonText }) => {
       <ImgWrap Tag="div" fluid={imageStack}>
         <div>
           <ImgTitle>Make law research easier and enjoyable again</ImgTitle>
-          <p>Access 2000+ decided cases anywhere, anytime.</p>
+          <p>Access {countUp} decided cases anywhere, anytime.</p>
         </div>
       </ImgWrap>
       <FormWrap>
