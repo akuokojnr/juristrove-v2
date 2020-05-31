@@ -173,11 +173,11 @@ export const Button = styled.button`
 export const Save = styled(Button)`
   padding: 0;
   border: none;
-  width: 112px;
 
   ${({ theme }) => media.sm`
     border: 2px solid ${theme.colors.limeGray};
     padding: 0.25rem 1rem;
+    width: 112px;
   `};
 
   ${media.md`
@@ -200,14 +200,27 @@ export const Save = styled(Button)`
 `;
 
 export const Saved = styled(Save)`
-  background: ${({ theme }) => theme.colors.lightCyan};
   color: ${({ theme }) => theme.colors.darkCyan2};
 
-  ${({ theme }) => media.sm`
-    border: 2px solid ${theme.colors.lightCyan};
-  `};
-
   &:hover {
+    background: transparent;
+    color: ${({ theme }) => theme.colors.errorDark};
+    border: none;
+
+    span {
+      display: none;
+    }
+
+    svg {
+      color: ${({ theme }) => theme.colors.errorDark};
+    }
+  }
+
+  ${({ theme }) => media.sm`
+    background: ${({ theme }) => theme.colors.lightCyan};
+    border: 2px solid ${theme.colors.lightCyan};
+
+    &:hover {
     background: ${({ theme }) => theme.colors.errorLight};
     color: ${({ theme }) => theme.colors.errorDark};
     border: 2px solid ${({ theme }) => theme.colors.errorLight};
@@ -220,8 +233,9 @@ export const Saved = styled(Save)`
       display: none;
     }
   }
+  `};
 
   svg {
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.darkCyan2};
   }
 `;
