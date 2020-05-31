@@ -57,7 +57,7 @@ const AppNav: React.FC<AppNavProps> = ({
   const [isOpen, toggleMenu] = useState<boolean>(false);
   const [message, setMessage] = useState<{
     type: "error" | "success";
-    message: string;
+    text?: string;
   }>();
 
   const handleClick = () => toggleMenu(!isOpen);
@@ -125,57 +125,59 @@ const AppNav: React.FC<AppNavProps> = ({
   };
 
   return (
-    <Nav>
-      <Wrap>
-        <div>
-          {isOpen ? (
-            <CloseIcon onClick={handleClick} size={30} />
-          ) : (
-            <MenuIcon onClick={handleClick} size={30} />
-          )}
-        </div>
-        <Brand to="/app">Juristrove</Brand>
-        <NavItems>
-          {LINKS.map(({ id, name, url }) => (
-            <NavItem key={id}>
-              <Link to={url} activeClassName="active">
-                {name}
-              </Link>
-            </NavItem>
-          ))}
-        </NavItems>
-
-        <MobileNav isOpen={isOpen}>
-          {LINKS.map(({ id, name, url }) => (
-            <NavItem key={id}>
-              <Link to={url} activeClassName="active">
-                {name}
-              </Link>
-            </NavItem>
-          ))}
-        </MobileNav>
-        {hasSaveButton && (
-          <>
-            {!checkingSaveStatus && (
-              <>
-                {caseIsSaved ? (
-                  <Saved onClick={removeCase}>
-                    <BookmarkIcon size={24} />
-                    <span>Saved</span>
-                  </Saved>
-                ) : (
-                  <Save onClick={saveCase}>
-                    <BookmarkIcon size={24} />
-                    <span>Save</span>
-                  </Save>
-                )}
-              </>
+    <>
+      <Nav>
+        <Wrap>
+          <div>
+            {isOpen ? (
+              <CloseIcon onClick={handleClick} size={30} />
+            ) : (
+              <MenuIcon onClick={handleClick} size={30} />
             )}
-          </>
-        )}
-        <Button onClick={signOut}>Log out</Button>
-      </Wrap>
-    </Nav>
+          </div>
+          <Brand to="/app">Juristrove</Brand>
+          <NavItems>
+            {LINKS.map(({ id, name, url }) => (
+              <NavItem key={id}>
+                <Link to={url} activeClassName="active">
+                  {name}
+                </Link>
+              </NavItem>
+            ))}
+          </NavItems>
+
+          <MobileNav isOpen={isOpen}>
+            {LINKS.map(({ id, name, url }) => (
+              <NavItem key={id}>
+                <Link to={url} activeClassName="active">
+                  {name}
+                </Link>
+              </NavItem>
+            ))}
+          </MobileNav>
+          {hasSaveButton && (
+            <>
+              {!checkingSaveStatus && (
+                <>
+                  {caseIsSaved ? (
+                    <Saved onClick={removeCase}>
+                      <BookmarkIcon size={24} />
+                      <span>Saved</span>
+                    </Saved>
+                  ) : (
+                    <Save onClick={saveCase}>
+                      <BookmarkIcon size={24} />
+                      <span>Save</span>
+                    </Save>
+                  )}
+                </>
+              )}
+            </>
+          )}
+          <Button onClick={signOut}>Log out</Button>
+        </Wrap>
+      </Nav>
+    </>
   );
 };
 
