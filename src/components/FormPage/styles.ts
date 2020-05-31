@@ -11,7 +11,7 @@ export const Wrap = styled.section`
   }
 
   div:last-child {
-    margin-top: 10rem;
+    padding-top: 10rem;
   }
 
   ${media.md`
