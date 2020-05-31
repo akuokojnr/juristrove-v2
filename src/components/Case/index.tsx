@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDocument } from "react-firebase-hooks/firestore";
+import { useDownloadURL } from "react-firebase-hooks/storage";
 
 import Layout from "components/Layout";
 import SEO from "components/SEO";
@@ -16,25 +17,20 @@ interface CaseTemplateProps {
 
 const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
   const [isSaved, setIsSaved] = useState<boolean>(false);
-  const [caseUrl, setCaseUrl] = useState();
 
   const firebase = useFirebase();
   const userId = getUserId();
 
-  const [value, loading, error] = useDocument(
-    firebase?.firestore().doc(`cases/${slug}`)
-  );
-
+  // Load request case meta
+  const [value] = useDocument(firebase?.firestore().doc(`cases/${slug}`));
   const data = value?.data();
 
-  const getCaseUrl = async (title: string) => {
-    const url = await firebase
-      ?.storage()
-      .refFromURL(`cases/${title}`)
-      .getDownloadURL();
-    return url;
-  };
+  // Get download url
+  const [url, loading, error] = useDownloadURL(
+    firebase?.storage().ref(`cases/${data?.title}.pdf`)
+  );
 
+  // Check if case has already been saved
   const [snapshot, isLoading, err] = useDocument(
     firebase?.firestore().doc(`users/${userId}/savedCases/${data?.title}`)
   );
@@ -43,9 +39,6 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
     if (snapshot?.exists) {
       setIsSaved(true);
     }
-
-    const url = getCaseUrl(data?.title);
-    setCaseUrl(url);
   });
 
   return (
@@ -60,7 +53,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
         setSaveStatus={setIsSaved}
       >
         <DocWrap>
-          <Reader caseUrl={caseUrl} title={data?.title} />
+          {!loading && url && <Reader caseUrl={url} title={data?.title} />}
         </DocWrap>
       </Layout>
     </>
