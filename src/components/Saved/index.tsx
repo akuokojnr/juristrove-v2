@@ -12,8 +12,6 @@ import { Content, LinkText, NoData, SavedButton, LinkTitle } from "./styles";
 
 import en from "javascript-time-ago/locale/en";
 
-import { BookmarkStar as BookmarkIcon } from "@styled-icons/boxicons-solid/BookmarkStar";
-
 JavascriptTimeAgo.locale(en);
 
 interface SavedCasesProps {
@@ -67,7 +65,6 @@ const SavedCases: React.FC<SavedCasesProps> = ({ data }) => {
             </Link>
 
             <SavedButton onClick={() => removeCase(title)}>
-              {/* <BookmarkIcon size={24} /> */}
               <span>Remove</span>
             </SavedButton>
           </li>
