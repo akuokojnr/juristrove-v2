@@ -15,7 +15,7 @@ const PageWrap = styled.div`
     margin-bottom: 1.5rem;
     
     canvas {
-      width: 890px !important;
+      width: 840px !important;
     }
   `}
 `;

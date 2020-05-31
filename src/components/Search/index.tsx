@@ -23,7 +23,7 @@ const Search: React.FC = () => {
       <Wrapper>
         <InstantSearch
           searchClient={searchClient}
-          indexName="dev_CASES"
+          indexName="CASES"
           root={{ Root, props: { ref } }}
         >
           <SearchInput />

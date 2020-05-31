@@ -3,7 +3,7 @@ import styled from "styled-components";
 import media from "utils/media";
 
 const DocWrap = styled.section`
-  height: 100%;
+  min-height: 80vh;
   padding: 2rem;
   background: ${({ theme }) => theme.colors.readerBg};
 

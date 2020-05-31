@@ -82,6 +82,7 @@ export const HitWrap = styled.article`
     font-size: 1.15rem;
     font-weight: 600;
     font-family: "Cabin";
+    text-transform: uppercase;
   }
 
   p {

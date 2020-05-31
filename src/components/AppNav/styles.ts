@@ -156,7 +156,7 @@ export const Button = styled.button`
   ${({ theme }) => theme.buttonPrimary};
   font-weight: 500;
   padding: 0.25rem 1rem;
-  transition: all 340ms ease-in-out;
+  transition: all 240ms ease;
 
   ${media.md`
     margin-left: 0;
@@ -164,20 +164,19 @@ export const Button = styled.button`
   `}
 
   &:hover {
-    background: transparent;
-    border: 2px solid ${({ theme }) => theme.colors.moderateCyan};
-    color: ${({ theme }) => theme.colors.moderateCyan};
+    border: 2px solid ${({ theme }) => theme.colors.lightCyan};
+    background: ${({ theme }) => theme.colors.lightCyan};
+    color: ${({ theme }) => theme.colors.darkCyan2};
   }
 `;
 
-export const SaveButton = styled(Button)<{ isSaved?: boolean }>`
+export const Save = styled(Button)`
   padding: 0;
   border: none;
+  width: 112px;
 
-  ${({ isSaved, theme }) => media.sm`
-    border: 2px solid ${
-      isSaved ? theme.colors.moderateCyan : theme.colors.limeGray
-    };
+  ${({ theme }) => media.sm`
+    border: 2px solid ${theme.colors.limeGray};
     padding: 0.25rem 1rem;
   `};
 
@@ -194,10 +193,35 @@ export const SaveButton = styled(Button)<{ isSaved?: boolean }>`
   }
 
   svg {
-    color: ${({ isSaved, theme }) => isSaved && theme.colors.moderateCyan};
-
     ${media.sm`
       display: none;
     `};
+  }
+`;
+
+export const Saved = styled(Save)`
+  background: ${({ theme }) => theme.colors.lightCyan};
+  color: ${({ theme }) => theme.colors.darkCyan2};
+
+  ${({ theme }) => media.sm`
+    border: 2px solid ${theme.colors.lightCyan};
+  `};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.errorLight};
+    color: ${({ theme }) => theme.colors.errorDark};
+    border: 2px solid ${({ theme }) => theme.colors.errorLight};
+
+    :before {
+      content: "Remove";
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  svg {
+    color: ${({ theme }) => theme.colors.white};
   }
 `;

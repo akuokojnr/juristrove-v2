@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, navigate } from "gatsby";
-import { SiteClient } from "datocms-client";
 import uuid from "uuid/v4";
-import delve from "dlv";
+import { QueryDocumentSnapshot } from "react-firebase-hooks";
 
 import useFirebase from "utils/hooks/useFirebase";
+import getUserId from "utils/hooks/useFirebase/getUserId";
 
 import { BookmarkStar as BookmarkIcon } from "@styled-icons/boxicons-solid/BookmarkStar";
 
@@ -16,7 +16,8 @@ import {
   NavItem,
   Brand,
   Button,
-  SaveButton,
+  Save,
+  Saved,
   MenuIcon,
   CloseIcon,
 } from "./styles";
@@ -36,16 +37,24 @@ const LINKS = [
 
 interface AppNavProps {
   hasSaveButton?: boolean;
-  caseMeta?: {
+  caseMeta: QueryDocumentSnapshot<{
     originalId: string;
     title: string;
     slug: string;
-    issaved: boolean;
-  };
+  }>;
+  caseIsSaved: boolean;
+  checkingSaveStatus: boolean;
+  setSaveStatus: (val: boolean) => void;
 }
 
-const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
-  const [isOpen, toggleMenu] = useState(false);
+const AppNav: React.FC<AppNavProps> = ({
+  hasSaveButton,
+  caseMeta,
+  caseIsSaved,
+  checkingSaveStatus,
+  setSaveStatus,
+}) => {
+  const [isOpen, toggleMenu] = useState<boolean>(false);
   const [message, setMessage] = useState<{
     type: "error" | "success";
     message: string;
@@ -54,34 +63,46 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
   const handleClick = () => toggleMenu(!isOpen);
 
   const firebase = useFirebase();
-  const datoClient = new SiteClient(process.env.GATSBY_DATO_ADMIN_KEY);
+  const userId = getUserId();
 
-  let user;
-
-  if (typeof window !== `undefined`) {
-    user = JSON.parse(window.localStorage.getItem("user"));
-  }
-
-  const userId = delve(user, "uid") && user.uid;
+  let file = {
+    title: caseMeta?.title,
+    slug: caseMeta?.slug,
+    timestamp: Date.now(),
+  };
 
   const saveCase = async () => {
-    let file = {
-      title: caseMeta?.title,
-      slug: caseMeta?.slug,
-      timestamp: Date.now(),
-    };
-
     try {
       await firebase
         ?.firestore()
         .collection(`users/${userId}/savedCases`)
-        .add(file);
+        .doc(file.title)
+        .set(file);
 
-      await datoClient.items.update(caseMeta?.originalId, { issaved: true });
+      setSaveStatus(true);
 
       setMessage({
         type: "success",
         message: "Your case has been saved successfully.",
+      });
+    } catch (err) {
+      setMessage({ type: "error", message: err.message });
+    }
+  };
+
+  const removeCase = async () => {
+    try {
+      await firebase
+        ?.firestore()
+        .collection(`users/${userId}/savedCases`)
+        .doc(file.title)
+        .delete();
+
+      setSaveStatus(false);
+
+      setMessage({
+        type: "success",
+        message: "Your case has been removed successfully.",
       });
     } catch (err) {
       setMessage({ type: "error", message: err.message });
@@ -134,14 +155,23 @@ const AppNav: React.FC<AppNavProps> = ({ hasSaveButton, caseMeta }) => {
           ))}
         </MobileNav>
         {hasSaveButton && (
-          <SaveButton onClick={saveCase} isSaved={caseMeta?.issaved}>
-            <BookmarkIcon size={24} />
-            {caseMeta?.issaved ? (
-              <span>Case saved</span>
-            ) : (
-              <span>Save case</span>
+          <>
+            {!checkingSaveStatus && (
+              <>
+                {caseIsSaved ? (
+                  <Saved onClick={removeCase}>
+                    <BookmarkIcon size={24} />
+                    <span>Saved</span>
+                  </Saved>
+                ) : (
+                  <Save onClick={saveCase}>
+                    <BookmarkIcon size={24} />
+                    <span>Save</span>
+                  </Save>
+                )}
+              </>
             )}
-          </SaveButton>
+          </>
         )}
         <Button onClick={signOut}>Log out</Button>
       </Wrap>
