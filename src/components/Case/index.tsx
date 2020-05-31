@@ -16,6 +16,7 @@ interface CaseTemplateProps {
 
 const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
   const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [caseUrl, setCaseUrl] = useState();
 
   const firebase = useFirebase();
   const userId = getUserId();
@@ -26,6 +27,14 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
 
   const data = value?.data();
 
+  const getCaseUrl = async link => {
+    const url = await firebase
+      ?.storage()
+      .refFromURL(link)
+      .getDownloadURL();
+    return url;
+  };
+
   const [snapshot, isLoading, err] = useDocument(
     firebase?.firestore().doc(`users/${userId}/savedCases/${data?.title}`)
   );
@@ -34,6 +43,9 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
     if (snapshot?.exists) {
       setIsSaved(true);
     }
+
+    const url = getCaseUrl(data?.url);
+    setCaseUrl(url);
   });
 
   return (
@@ -48,7 +60,7 @@ const CaseTemplate: React.FC<CaseTemplateProps> = ({ slug }) => {
         setSaveStatus={setIsSaved}
       >
         <DocWrap>
-          <Reader caseUrl={data?.url} title={data?.title} />
+          <Reader caseUrl={caseUrl} title={data?.title} />
         </DocWrap>
       </Layout>
     </>
